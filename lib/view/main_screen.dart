@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:new_techblog/constants/my_color.dart';
+import 'package:new_techblog/constants/mystring.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
+import 'package:new_techblog/models/fake_data.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -12,7 +14,7 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: Center(
           child: Image.asset(
-            Assets.images.logosplash.path,
+            homePagePosterMap["imageAssets"],
             height: 50,
           ),
         ),
@@ -62,11 +64,11 @@ class MainScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: Column(
-          children: [
-            Stack(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Stack(
               children: [
                 Container(
                   height: 200,
@@ -96,14 +98,27 @@ class MainScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "شهرام بابایی ـ یک روز پیش",
+                            homePagePosterMap["writer"] +
+                                homePagePosterMap["date"],
                             style: textTheme.bodySmall!
                                 .copyWith(color: Colors.white),
                           ),
-                          Text(
-                            "Like 253",
-                            style: textTheme.bodySmall!
-                                .copyWith(color: Colors.white),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Like 253",
+                                style: textTheme.bodySmall!
+                                    .copyWith(color: Colors.white),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Icon(
+                                Icons.remove_red_eye_sharp,
+                                color: Colors.white,
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -111,7 +126,7 @@ class MainScreen extends StatelessWidget {
                         height: 3,
                       ),
                       Text(
-                        "دوازده قدم برنامه نویسی...",
+                        homePagePosterMap["title"],
                         style:
                             textTheme.bodyLarge!.copyWith(color: Colors.white),
                       ),
@@ -120,9 +135,68 @@ class MainScreen extends StatelessWidget {
                 )
               ],
             ),
-            Container()
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          SizedBox(
+            height: 40,
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              itemCount: tagList.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 40,
+                  margin: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(24),
+                      gradient: LinearGradient(
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft,
+                          colors: GradientColors.tags)),
+                  child: Row(
+                    children: [
+                      ImageIcon(
+                        Assets.icons.hashTagIcon.image().image,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        tagList[index].title,
+                        style: textTheme.headlineSmall!
+                            .copyWith(color: Colors.white, fontSize: 18),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+            child: Row(
+              children: [
+                ImageIcon(
+                  Assets.icons.pen.image().image,
+                  color: SolidColors.seeMore,
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  MyString.viewHotestBlog,
+                  style: textTheme.displaySmall,
+                )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
