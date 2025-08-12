@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:new_techblog/constants/my_color.dart';
+import 'package:new_techblog/services/dio_service.dart';
 import 'package:new_techblog/view/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main()async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
         statusBarColor: SolidColors.statusBarColor,
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DioService dioService = DioService();
+    dioService.getMethod(
+        "https://techblog.sasansafari.com/Techblog/api/home/?command=index");
     return MaterialApp(
       title: 'techBlog',
       localizationsDelegates: [

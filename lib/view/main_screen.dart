@@ -14,7 +14,7 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: Center(
           child: Image.asset(
-            homePagePosterMap["imageAssets"],
+            Assets.images.logosplash.path,
             height: 50,
           ),
         ),
@@ -64,139 +64,283 @@ class MainScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Stack(
-              children: [
-                Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(
-                      image: AssetImage(Assets.images.banner.path),
-                      fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Stack(
+                children: [
+                  Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      image: DecorationImage(
+                        image: AssetImage(Assets.images.banner.path),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    foregroundDecoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: GradientColors.homePosterCoverGradiant,
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  foregroundDecoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: GradientColors.homePosterCoverGradiant,
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter),
-                    borderRadius: BorderRadius.circular(15),
+                  Positioned(
+                    bottom: 5,
+                    left: 10,
+                    right: 10,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              homePagePosterMap["writer"] +
+                                  homePagePosterMap["date"],
+                              style: textTheme.bodySmall!
+                                  .copyWith(color: Colors.white),
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Like 253",
+                                  style: textTheme.bodySmall!
+                                      .copyWith(color: Colors.white),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  Icons.remove_red_eye_sharp,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          homePagePosterMap["title"],
+                          style: textTheme.bodyLarge!
+                              .copyWith(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            SizedBox(
+              height: 40,
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                itemCount: tagList.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 40,
+                    margin: EdgeInsets.only(left: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(24),
+                        gradient: LinearGradient(
+                            begin: Alignment.centerRight,
+                            end: Alignment.centerLeft,
+                            colors: GradientColors.tags)),
+                    child: Row(
+                      children: [
+                        ImageIcon(
+                          Assets.icons.hashTagIcon.image().image,
+                          color: Colors.white,
+                          size: 16,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          tagList[index].title,
+                          style: textTheme.headlineSmall!
+                              .copyWith(color: Colors.white, fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+              child: Row(
+                children: [
+                  ImageIcon(
+                    Assets.icons.pen.image().image,
+                    color: SolidColors.seeMore,
                   ),
-                ),
-                Positioned(
-                  bottom: 5,
-                  left: 10,
-                  right: 10,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    MyString.viewHotestBlog,
+                    style: textTheme.displaySmall,
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 210,
+              child: ListView.builder(
+                itemCount: blogList.getRange(0, 7).length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: SizedBox(
+                      width: 200,
+                      // height: 200,
+                      child: Column(
                         children: [
-                          Text(
-                            homePagePosterMap["writer"] +
-                                homePagePosterMap["date"],
-                            style: textTheme.bodySmall!
-                                .copyWith(color: Colors.white),
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                          Stack(
                             children: [
-                              Text(
-                                "Like 253",
-                                style: textTheme.bodySmall!
-                                    .copyWith(color: Colors.white),
+                              Container(
+                                width: 200,
+                                height: 160,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                        blogList[index].imageUrl,
+                                      ),
+                                      fit: BoxFit.cover),
+                                ),
+                                foregroundDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    gradient: LinearGradient(
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter,
+                                        colors: GradientColors.blogPost)),
                               ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Icon(
-                                Icons.remove_red_eye_sharp,
-                                color: Colors.white,
-                              ),
+                              Positioned(
+                                  left: 10,
+                                  right: 10,
+                                  bottom: 10,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        blogList[index].writer,
+                                        style: textTheme.displayMedium,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            blogList[index].views,
+                                            style: textTheme.displayMedium,
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Icon(
+                                            Icons.remove_red_eye_sharp,
+                                            color: Colors.white,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ))
                             ],
                           ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            blogList[index].title,
+                            style: textTheme.headlineMedium,
+                          )
                         ],
                       ),
-                      SizedBox(
-                        height: 3,
-                      ),
-                      Text(
-                        homePagePosterMap["title"],
-                        style:
-                            textTheme.bodyLarge!.copyWith(color: Colors.white),
-                      ),
-                    ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              child: Row(
+                children: [
+                  ImageIcon(
+                    Assets.icons.pen.image().image,
+                    color: SolidColors.seeMore,
                   ),
-                )
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          SizedBox(
-            height: 40,
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              itemCount: tagList.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 40,
-                  margin: EdgeInsets.only(left: 10),
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(24),
-                      gradient: LinearGradient(
-                          begin: Alignment.centerRight,
-                          end: Alignment.centerLeft,
-                          colors: GradientColors.tags)),
-                  child: Row(
-                    children: [
-                      ImageIcon(
-                        Assets.icons.hashTagIcon.image().image,
-                        color: Colors.white,
-                        size: 16,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        tagList[index].title,
-                        style: textTheme.headlineSmall!
-                            .copyWith(color: Colors.white, fontSize: 18),
-                      ),
-                    ],
+                  SizedBox(
+                    width: 5,
                   ),
-                );
-              },
+                  Text(
+                    MyString.viewHotestBlog,
+                    style: textTheme.displaySmall,
+                  )
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
-            child: Row(
-              children: [
-                ImageIcon(
-                  Assets.icons.pen.image().image,
-                  color: SolidColors.seeMore,
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  MyString.viewHotestBlog,
-                  style: textTheme.displaySmall,
-                )
-              ],
+            SizedBox(
+              height: 210,
+              child: ListView.builder(
+                itemCount: blogList.getRange(0, 7).length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: SizedBox(
+                      width: 200,
+                      height: 200,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 200,
+                            height: 160,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                    blogList[index].imageUrl,
+                                  ),
+                                  fit: BoxFit.cover),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            blogList[index].title,
+                            style: textTheme.headlineMedium,
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
