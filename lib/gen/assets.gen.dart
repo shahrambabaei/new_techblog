@@ -18,11 +18,20 @@ class $AssetsIconsGen {
   AssetGenImage get hashTagIcon =>
       const AssetGenImage('assets/icons/hashTagIcon.png');
 
+  /// File path: assets/icons/icon.png
+  AssetGenImage get icon => const AssetGenImage('assets/icons/icon.png');
+
   /// File path: assets/icons/pen.png
   AssetGenImage get pen => const AssetGenImage('assets/icons/pen.png');
 
+  /// File path: assets/icons/user.png
+  AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
+
+  /// File path: assets/icons/w.png
+  AssetGenImage get w => const AssetGenImage('assets/icons/w.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [hashTagIcon, pen];
+  List<AssetGenImage> get values => [hashTagIcon, icon, pen, user, w];
 }
 
 class $AssetsImagesGen {
