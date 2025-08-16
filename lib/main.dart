@@ -5,7 +5,7 @@ import 'package:new_techblog/services/dio_service.dart';
 import 'package:new_techblog/view/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main()async {
+void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
         statusBarColor: SolidColors.statusBarColor,

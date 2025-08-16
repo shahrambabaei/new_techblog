@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
           SeeMorePodcast(textTheme: textTheme),
           HomeScreenPOdcastList(textTheme: textTheme),
           SizedBox(
-            height: 50,
+            height: 60,
           )
         ],
       ),
@@ -76,7 +76,7 @@ class HomeSceenTagList extends StatelessWidget {
                 Text(
                   tagList[index].title,
                   style: textTheme.headlineSmall!
-                      .copyWith(color: Colors.white, fontSize: 18),
+                      .copyWith(color: Colors.white, fontSize: 16),
                 ),
               ],
             ),
@@ -115,7 +115,6 @@ class HomeScreenPOdcastList extends StatelessWidget {
                     width: 200,
                     height: 160,
                     decoration: BoxDecoration(
-                      color: Colors.lime,
                       borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
                           image: NetworkImage(
