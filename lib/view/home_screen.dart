@@ -7,13 +7,11 @@ import 'package:new_techblog/models/fake_data.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
     super.key,
-    required this.textTheme,
   });
-
-  final TextTheme textTheme;
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
     return SingleChildScrollView(
       child: Column(
         children: [

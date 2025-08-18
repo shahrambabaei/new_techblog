@@ -20,16 +20,16 @@ class DividerWidget extends StatelessWidget {
           indent: size,
           endIndent: size,
           color: SolidColors.dividerColor,
-          
         ),
-       
       ],
     );
   }
 }
 
 class BottomNavigation extends StatelessWidget {
+  final Function(int index) onChannge;
   const BottomNavigation({
+    required this.onChannge,
     super.key,
   });
 
@@ -48,25 +48,24 @@ class BottomNavigation extends StatelessWidget {
           height: MediaQuery.of(context).size.height / 8,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              gradient:
-                  LinearGradient(colors: GradientColors.bottomNav)),
+              gradient: LinearGradient(colors: GradientColors.bottomNav)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => onChannge(0),
                   icon: ImageIcon(
                     Assets.icons.user.image().image,
                     color: Colors.white,
                   )),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => onChannge(1),
                   icon: ImageIcon(
                     Assets.icons.w.image().image,
                     color: Colors.white,
                   )),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => onChannge(2),
                   icon: ImageIcon(
                     Assets.icons.pen.image().image,
                     color: Colors.white,
