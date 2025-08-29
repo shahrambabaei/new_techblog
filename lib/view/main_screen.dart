@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:new_techblog/component.dart';
 import 'package:new_techblog/constants/my_color.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
-import 'package:new_techblog/view/edit_screen.dart';
+import 'package:new_techblog/view/register_screen.dart';
 import 'package:new_techblog/view/home_screen.dart';
 import 'package:new_techblog/view/profile_screen.dart';
 
@@ -14,11 +14,10 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List screenList = [HomeScreen(), EditScreen(), ProfileScreen()];
+  List screenList = [HomeScreen(), RegisterScreen(), ProfileScreen()];
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    var textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -75,10 +74,16 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: Stack(
         children: [
-          screenList[selectedIndex],
+          IndexedStack(
+            index: selectedIndex,
+            children: [
+              HomeScreen(),
+              RegisterScreen(),
+              ProfileScreen(),
+            ],
+          ),
           Align(
             alignment: Alignment.bottomCenter,
-            
             child: BottomNavigation(
               onChannge: (value) {
                 selectedIndex = value;
