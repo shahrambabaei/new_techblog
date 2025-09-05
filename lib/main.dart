@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DioService dioService = DioService();
-    dioService.getMethod(
-        "https://techblog.sasansafari.com/Techblog/api/home/?command=index");
+    // dioService.getMethod(
+    //     "https://techblog.sasansafari.com/Techblog/api/home/?command=index");
     return MaterialApp(
       title: 'techBlog',
       localizationsDelegates: [
@@ -38,6 +38,18 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: Locale("fa", ''),
       theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+              
+                textStyle: WidgetStateTextStyle.resolveWith((state) {
+                
+                  if (state.contains(WidgetState.pressed)) {
+                    return TextStyle(fontSize: 25, color: Colors.white);
+                  }
+                  return TextStyle(fontSize: 18, color: Colors.white);
+                }),
+                backgroundColor:
+                    WidgetStatePropertyAll(SolidColors.primaryColor))),
         fontFamily: "dana",
         textTheme: TextTheme(
           displayLarge: TextStyle(

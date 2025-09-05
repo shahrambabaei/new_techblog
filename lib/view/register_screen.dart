@@ -43,24 +43,70 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: 100,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                _showEmailBottomSheet(context, textTheme);
+              },
               child: Text(
                 "بزن بریم",
                 style: textTheme.displayLarge,
               ),
-              style: ButtonStyle(
-                  textStyle: WidgetStateTextStyle.resolveWith((state) {
-                    if (state.contains(WidgetState.pressed)) {
-                      return TextStyle(fontSize: 25, color: Colors.white);
-                    }
-                    return TextStyle(fontSize: 18, color: Colors.white);
-                  }),
-                  backgroundColor:
-                      WidgetStatePropertyAll(SolidColors.primaryColor)),
             )
           ],
         ),
       ),
+    );
+  }
+
+  Future<dynamic> _showEmailBottomSheet(
+      BuildContext context, TextTheme textTheme) {
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+            height: MediaQuery.of(context).size.height / 2,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  MyString.insertYourEmail,
+                  style: textTheme.headlineMedium,
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    textDirection: TextDirection.ltr,
+                    decoration: InputDecoration(
+                        hintText: "example@gmail.com",
+                        hintStyle: textTheme.headlineSmall,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12))),
+                  ),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      "ادامه",
+                    ))
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
