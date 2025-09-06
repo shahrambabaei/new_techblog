@@ -279,3 +279,4 @@ List<BlogModel> blogList = [
       """,
       views: "256")
 ];
+List<HashTagModel> selectedTags=[];

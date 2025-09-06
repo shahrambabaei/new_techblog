@@ -53,7 +53,7 @@ class HomeSceenTagList extends StatelessWidget {
           return Container(
             height: 40,
             margin: EdgeInsets.only(left: 10),
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(24),

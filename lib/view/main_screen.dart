@@ -18,6 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = TextTheme.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -44,32 +45,59 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.white),
-              child: Image.asset(
-                Assets.images.logosplash.path,
-                height: 50,
+        backgroundColor: SolidColors.scaffoldBg,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(color: Colors.white),
+                child: Image.asset(
+                  Assets.images.logosplash.path,
+                  scale: 2,
+                ),
               ),
-            ),
-            ListTile(
-              title: const Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ],
+              ListTile(
+                title: Text(
+                  'پروفایل کاربر',
+                  style: textTheme.headlineSmall!.copyWith(color: Colors.black),
+                ),
+                onTap: () {},
+              ),
+              Divider(
+                color: SolidColors.dividerColor,
+              ),
+              ListTile(
+                title: Text(
+                  " درباره تک‌بلاگ",
+                  style:
+                      textTheme.headlineMedium!.copyWith(color: Colors.black),
+                ),
+                onTap: () {},
+              ),
+              Divider(
+                color: SolidColors.dividerColor,
+              ),
+              ListTile(
+                title: Text(
+                  'اشتراک گذاری تک بلاگ',
+                  style: textTheme.headlineSmall!.copyWith(color: Colors.black),
+                ),
+                onTap: () {},
+              ),
+              Divider(
+                color: SolidColors.dividerColor,
+              ),
+              ListTile(
+                title: Text(
+                  "تک‌بلاگ در گیت هاب",
+                  style: textTheme.headlineSmall!.copyWith(color: Colors.black),
+                ),
+                onTap: () {},
+              ),
+            ],
+          ),
         ),
       ),
       body: Stack(

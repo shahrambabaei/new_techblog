@@ -40,6 +40,7 @@ dependencies:
   intl: any
   dio: ^5.9.0
   flutter_svg: ^2.2.0
+  validators: ^3.0.0
 
 dev_dependencies:
   flutter_test:

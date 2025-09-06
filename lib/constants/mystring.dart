@@ -15,4 +15,5 @@ class MyString {
   static const String welcome = "به تک‌بلاگ خوش اومدی";
   static const String welcomeescription =
       "برای ارسال مطلب و پادکست باید حتما\n ثبت نام کنی";
+  static const String cats=" تبریک میگم ، ایمیل با موفقیت تایید شد \nلطفا اطلاعات ثبت نام رو کامل کن   ";
 }

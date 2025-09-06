@@ -40,6 +40,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/banner.png
   AssetGenImage get banner => const AssetGenImage('assets/images/banner.png');
 
+  /// File path: assets/images/downArrow.png
+  AssetGenImage get downArrow =>
+      const AssetGenImage('assets/images/downArrow.png');
+
   /// File path: assets/images/logosplash.png
   AssetGenImage get logosplash =>
       const AssetGenImage('assets/images/logosplash.png');
@@ -51,7 +55,7 @@ class $AssetsImagesGen {
   String get techbot => 'assets/images/techbot.svg';
 
   /// List of all assets
-  List<dynamic> get values => [banner, logosplash, profile, techbot];
+  List<dynamic> get values => [banner, downArrow, logosplash, profile, techbot];
 }
 
 class Assets {
