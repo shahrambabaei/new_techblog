@@ -13,6 +13,8 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+final GlobalKey<ScaffoldState> _key = GlobalKey();
+
 class _MainScreenState extends State<MainScreen> {
   List screenList = [HomeScreen(), RegisterScreen(), ProfileScreen()];
   int selectedIndex = 0;
@@ -20,30 +22,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     TextTheme textTheme = TextTheme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Image.asset(
-            Assets.images.logosplash.path,
-            height: 50,
-          ),
-        ),
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              icon: Icon(Icons.menu),
-            );
-          },
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.search),
-          )
-        ],
-      ),
+      key: _key,
       drawer: Drawer(
         backgroundColor: SolidColors.scaffoldBg,
         child: Padding(
@@ -99,6 +78,30 @@ class _MainScreenState extends State<MainScreen> {
             ],
           ),
         ),
+      ),
+      appBar: AppBar(
+        title: Center(
+          child: Image.asset(
+            Assets.images.logosplash.path,
+            height: 50,
+          ),
+        ),
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              onPressed: () {
+                _key.currentState!.openDrawer();
+              },
+              icon: Icon(Icons.menu),
+            );
+          },
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.search),
+          )
+        ],
       ),
       body: Stack(
         children: [
