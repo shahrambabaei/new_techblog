@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_techblog/constants/my_color.dart';
@@ -86,7 +85,9 @@ class _MyCatsWidgetState extends State<MyCatsWidget> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
-                            selectedTags.add(tagList[index]);
+                            if (!selectedTags.contains(tagList[index])) {
+                              selectedTags.add(tagList[index]);
+                            }
 
                             setState(() {});
                           },
