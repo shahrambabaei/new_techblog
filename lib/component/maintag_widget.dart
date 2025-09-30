@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/my_color.dart';
+import 'my_color.dart';
 import '../gen/assets.gen.dart';
 import '../models/fake_data.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_techblog/constants/my_color.dart';
-import 'package:new_techblog/constants/mystring.dart';
+import 'package:new_techblog/component/my_color.dart';
+import 'package:new_techblog/component/mystring.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 import 'package:new_techblog/models/fake_data.dart';
 

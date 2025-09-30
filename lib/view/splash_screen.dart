@@ -1,30 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:new_techblog/constants/my_color.dart';
+import 'package:get/get.dart';
+import 'package:new_techblog/component/my_color.dart';
+import 'package:new_techblog/controller/splash_screen_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
-import 'package:new_techblog/view/main_screen.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends GetView<SplashController> {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration(seconds: 3)).then((value) => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MainScreen(),
-          //  MainScreen(),
-        )));
-  }
-
-  @override
   Widget build(BuildContext context) {
+    // final controller = Get.find<SplashController>();
     return Scaffold(
       body: Center(
         child: Column(

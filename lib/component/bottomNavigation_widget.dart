@@ -1,30 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_techblog/constants/my_color.dart';
+import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
-
-class DividerWidget extends StatelessWidget {
-  final String text;
-  final double size;
-  const DividerWidget({
-    required this.text,
-    required this.size,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Divider(
-          thickness: 1.5,
-          indent: size,
-          endIndent: size,
-          color: SolidColors.dividerColor,
-        ),
-      ],
-    );
-  }
-}
 
 class BottomNavigation extends StatelessWidget {
   final Function(int index) onChannge;
@@ -77,5 +53,4 @@ class BottomNavigation extends StatelessWidget {
     );
   }
 }
-
 
