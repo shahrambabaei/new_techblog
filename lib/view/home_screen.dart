@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           SeeMorePodcast(textTheme: textTheme),
           HomeScreenPOdcastList(textTheme: textTheme),
           SizedBox(
-            height: 60,
+            height: 100,
           )
         ],
       ),
@@ -162,7 +162,7 @@ class SeeMorePodcast extends StatelessWidget {
             width: 5,
           ),
           Text(
-            MyString.viewHotestBlog,
+            MyString.viewHotestPodCasts,
             style: textTheme.displaySmall,
           )
         ],

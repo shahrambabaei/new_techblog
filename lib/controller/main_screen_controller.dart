@@ -12,6 +12,7 @@ class MainScreenController extends GetxController {
     ProfileScreen(),
   ];
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final Uri url = Uri.parse('https://flutter.dev');
   late TextTheme textTheme;
 
   @override

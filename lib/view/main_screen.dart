@@ -7,12 +7,14 @@ import 'package:new_techblog/gen/assets.gen.dart';
 import 'package:new_techblog/view/register_screen.dart';
 import 'package:new_techblog/view/home_screen.dart';
 import 'package:new_techblog/view/profile_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainScreen extends GetView<MainScreenController> {
   const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Uri url = Uri.parse('https://flutter.dev');
     return Scaffold(
       key: controller.scaffoldKey,
       drawer: Drawer(
@@ -57,7 +59,11 @@ class MainScreen extends GetView<MainScreenController> {
                   style: controller.textTheme.headlineSmall!
                       .copyWith(color: Colors.black),
                 ),
-                onTap: () {},
+                onTap: () {
+
+                  // SharePlus.instance.share(
+                  //     ShareParams(text: "techBlog", title: "shahram babaei"));
+                },
               ),
               Divider(
                 color: SolidColors.dividerColor,
@@ -68,7 +74,9 @@ class MainScreen extends GetView<MainScreenController> {
                   style: controller.textTheme.headlineSmall!
                       .copyWith(color: Colors.black),
                 ),
-                onTap: () {},
+                onTap: () async {
+                  await launchUrl(url);
+                },
               ),
             ],
           ),
