@@ -1,16 +1,20 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 class DioService {
-  Future<dynamic>  getMethod(String url) async {
+  final dio = Dio();
+
+  Future<dynamic> getData(String url) async {
     Response response;
-    Dio dio = Dio();
     response = await dio.get(
       url,
       options: Options(
-          headers: {"contenttype": "application/json"},
-          responseType: ResponseType.json,
-          method: "GET"),
+          headers: {"content-type": "application/json"},
+          method: "GET",
+          responseType: ResponseType.json),
     );
+    log(response.toString());
     return response;
   }
 }

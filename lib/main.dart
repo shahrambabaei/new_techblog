@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:new_techblog/component/api_constant.dart';
 import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/my_binding.dart';
 import 'package:new_techblog/services/dio_service.dart';
@@ -16,6 +17,9 @@ void main() async {
         systemNavigationBarColor: SolidColors.systemNavigationBarColor,
         systemNavigationBarIconBrightness: Brightness.dark),
   );
+  DioService dioService = DioService();
+  var res = await dioService.getData(ApiConstant.getHomeItem);
+
   runApp(const MyApp());
 }
 
@@ -24,9 +28,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DioService dioService = DioService();
-    // dioService.getMethod(
-    //     "https://techblog.sasansafari.com/Techblog/api/home/?command=index");
     return GetMaterialApp(
       initialBinding: MyBinding(),
       getPages: [
