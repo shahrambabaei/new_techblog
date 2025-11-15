@@ -1,44 +1,37 @@
+import 'package:new_techblog/component/api_constant.dart';
+
 class ArticleModel {
-  String? id;
-  String? title;
-  String? catId;
-  String? image;
-  String? catName;
-  String? author;
-  String? view;
-  String? status;
-  String? createdAt;
+  late String id;
+  late String title;
+  late String catId;
+  late String image;
+  late String catName;
+  late String author;
+  late String view;
+  late String status;
+  late String createdAt;
 
   ArticleModel(
-      {this.id,
-      this.title,
-      this.image,
-      this.catId,
-      this.catName,
-      this.author,
-      this.view,
-      this.status,
-      this.createdAt});
+      {required this.id,
+      required this.title,
+      required this.image,
+      required this.catId,
+      required this.catName,
+      required this.author,
+      required this.view,
+      required this.status,
+      required this.createdAt});
 
   ArticleModel.fromJson(Map<String, dynamic> json) {
-    id:
-    json["id"];
-    title:
-    json["title"];
-    image:
-    json["image"];
-    carId:
-    json["cat_id"];
-    catName:
-    json["cat_name"];
-    author:
-    json["author"];
-    view:
-    json["view"];
-    status:
-    json["status"];
-    createdAt:
-    json["created_at"];
+    id = json["id"];
+    title = json["title"];
+    image = ApiConstant.hostusl + json["image"];
+    catId = json["cat_id"];
+    catName = json["cat_name"];
+    author = json["author"];
+    view = json["view"];
+    status = json["status"];
+    createdAt = json["created_at"];
   }
 
   Map<String, dynamic> toJson() {

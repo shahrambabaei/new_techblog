@@ -1,14 +1,16 @@
-class BannerModel {
-  String? id;
-  String? title;
-  String? image;
+import 'package:new_techblog/component/api_constant.dart';
 
-  BannerModel({this.id, this.title, this.image});
+class BannerModel {
+  late String id;
+  late String title;
+  late String image;
+
+  BannerModel({required this.id, required this.title, required this.image});
 
   BannerModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    image = json['image'];
+    image = ApiConstant.hostusl + json['image'];
   }
 
   Map<String, dynamic> toJson() {

@@ -14,7 +14,7 @@ class DioService {
           method: "GET",
           responseType: ResponseType.json),
     );
-    log(response.toString());
+    // log(response.toString());
     return response;
   }
 }

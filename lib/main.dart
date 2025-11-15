@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       initialBinding: MyBinding(),
       getPages: [
         GetPage(
-          name: "/mainscreen",
+          name: "/mainScreen",
           page: () => MainScreen(),
         ),
         GetPage(
