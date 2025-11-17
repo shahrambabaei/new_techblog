@@ -17,21 +17,31 @@ class HomeScreen extends GetView<HomeScreenController> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          bannerWidget(),
-          SizedBox(
-            height: 50,
-          ),
-          tagListWidget(),
-          seeMoreWidget(),
-          blogListWidget(),
-          seeMorepodcastWidget(),
-          podcastWidget(),
-          SizedBox(
-            height: 100,
-          )
-        ],
+      physics: BouncingScrollPhysics(),
+      child: Obx(
+        () {
+          return controller.isLoading.value == true
+            ? Column(
+                children: [
+                  bannerWidget(),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  tagListWidget(),
+                  seeMoreWidget(),
+                  blogListWidget(),
+                  seeMorepodcastWidget(),
+                  podcastWidget(),
+                  SizedBox(
+                    height: 100,
+                  )
+                ],
+              )
+            : SpinKitFadingCircle(
+                color: SolidColors.primaryColor,
+                size: 32,
+              );
+        },
       ),
     );
   }
@@ -43,13 +53,6 @@ class HomeScreen extends GetView<HomeScreenController> {
         children: [
           Container(
             height: 200,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              image: DecorationImage(
-                image: NetworkImage(controller.bannerModel.image!),
-                fit: BoxFit.cover,
-              ),
-            ),
             foregroundDecoration: BoxDecoration(
               gradient: LinearGradient(
                   colors: GradientColors.homePosterCoverGradiant,
@@ -57,57 +60,41 @@ class HomeScreen extends GetView<HomeScreenController> {
                   end: Alignment.bottomCenter),
               borderRadius: BorderRadius.circular(15),
             ),
+            child: CachedNetworkImage(
+              imageUrl: controller.bannerModel.value.image!,
+              imageBuilder: (context, imageProvider) {
+                return Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    image: DecorationImage(
+                      image: NetworkImage(controller.bannerModel.value.image!),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              },
+              placeholder: (context, url) => Placeholder(
+                child: SpinKitFadingCircle(
+                  color: SolidColors.primaryColor,
+                  size: 32,
+                ),
+              ),
+              errorWidget: (context, url, error) => Icon(
+                Icons.image_not_supported_outlined,
+                size: 32,
+              ),
+            ),
           ),
           Positioned(
-            bottom: 5,
+            bottom: 15,
             left: 10,
             right: 10,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      controller.bannerModel.title!,
-                      // HomeScreenBannerMap["writer"] + HomeScreenBannerMap["date"],
-                      style: Theme.of(Get.context!)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: Colors.white),
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Like 253",
-                          style: Theme.of(Get.context!)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(color: Colors.white),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Icon(
-                          Icons.remove_red_eye_sharp,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 3,
-                ),
-                Text(
-                  "",
-                  style: Theme.of(Get.context!)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: Colors.white),
-                ),
-              ],
+            child: Text(
+              controller.bannerModel.value.title!,
+              style: Theme.of(Get.context!)
+                  .textTheme
+                  .headlineMedium!
+                  .copyWith(color: Colors.white),
             ),
           )
         ],
@@ -200,20 +187,32 @@ class HomeScreen extends GetView<HomeScreenController> {
                           Container(
                             width: 200,
                             height: 160,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    controller.articleList[index].image!,
-                                  ),
-                                  fit: BoxFit.cover),
-                            ),
                             foregroundDecoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomCenter,
                                   end: Alignment.topCenter,
                                   colors: GradientColors.blogPost),
+                            ),
+                            child: CachedNetworkImage(
+                              imageUrl: controller.articleList[index].image!,
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  image: DecorationImage(
+                                      image: imageProvider, fit: BoxFit.cover),
+                                ),
+                              ),
+                              placeholder: (context, url) =>
+                                  SpinKitFadingCircle(
+                                color: SolidColors.primaryColor,
+                                size: 32,
+                              ),
+                              errorWidget: (context, url, error) => Icon(
+                                Icons.image_not_supported_outlined,
+                                size: 32,
+                              ),
                             ),
                           ),
                           Positioned(
@@ -224,7 +223,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  controller.articleList[index].author,
+                                  controller.articleList[index].author!,
                                   style: Theme.of(Get.context!)
                                       .textTheme
                                       .displayMedium,
@@ -233,7 +232,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      controller.articleList[index].view,
+                                      controller.articleList[index].view!,
                                       style: Theme.of(Get.context!)
                                           .textTheme
                                           .displayMedium,
@@ -258,7 +257,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                       Text(
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        controller.articleList[index].title,
+                        controller.articleList[index].title!,
                         style: Theme.of(Get.context!).textTheme.headlineMedium,
                       )
                     ],
@@ -329,16 +328,11 @@ class HomeScreen extends GetView<HomeScreenController> {
                           color: SolidColors.primaryColor,
                           size: 32,
                         ),
-                        errorWidget: (context, url, error) => Icon(Icons.image_not_supported_outlined,size: 32,),
+                        errorWidget: (context, url, error) => Icon(
+                          Icons.image_not_supported_outlined,
+                          size: 32,
+                        ),
                       ),
-                      // decoration: BoxDecoration(
-                      //   borderRadius: BorderRadius.circular(15),
-                      //   image: DecorationImage(
-                      //       image: NetworkImage(
-                      //         controller.podcastList[index].poster!,
-                      //       ),
-                      //       fit: BoxFit.cover),
-                      // ),
                     ),
                     SizedBox(
                       height: 5,

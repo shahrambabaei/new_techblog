@@ -1,11 +1,11 @@
 import 'package:new_techblog/component/api_constant.dart';
 
 class BannerModel {
-  late String id;
-  late String title;
-  late String image;
+  String? id;
+  String? title;
+  String? image;
 
-  BannerModel({required this.id, required this.title, required this.image});
+  BannerModel();
 
   BannerModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

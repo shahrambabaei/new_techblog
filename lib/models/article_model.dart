@@ -1,15 +1,15 @@
 import 'package:new_techblog/component/api_constant.dart';
 
 class ArticleModel {
-  late String id;
-  late String title;
-  late String catId;
-  late String image;
-  late String catName;
-  late String author;
-  late String view;
-  late String status;
-  late String createdAt;
+   String? id;
+   String? title;
+   String? catId;
+   String? image;
+   String? catName;
+   String? author;
+   String? view;
+   String? status;
+   String? createdAt;
 
   ArticleModel(
       {required this.id,
