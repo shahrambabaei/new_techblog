@@ -1,17 +1,17 @@
-import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_techblog/component/api_constant.dart';
 import 'package:new_techblog/models/article_model.dart';
 import 'package:new_techblog/models/banner_model.dart';
 import 'package:new_techblog/models/podcast_model.dart';
+import 'package:new_techblog/models/tag_mode.dart';
 import 'package:new_techblog/services/dio_service.dart';
 
 class HomeScreenController extends GetxController {
   Rx<BannerModel> bannerModel = BannerModel().obs;
   RxList<ArticleModel> articleList = RxList();
   RxList<PodcastModel> podcastList = RxList();
+  RxList<TagModel> tagList = RxList();
   RxBool isLoading = false.obs;
 
   @override
@@ -30,6 +30,10 @@ class HomeScreenController extends GetxController {
 
       //banner
       bannerModel.value = BannerModel.fromJson(response.data["poster"]);
+
+      response.data["tags"].map((e) {
+        tagList.add(TagModel.fromJson(e));
+      }).toList();
 
       //Article
       response.data["top_visited"].map((e) {

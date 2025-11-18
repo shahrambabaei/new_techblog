@@ -18,8 +18,6 @@ void main() async {
         systemNavigationBarColor: SolidColors.systemNavigationBarColor,
         systemNavigationBarIconBrightness: Brightness.dark),
   );
-  DioService dioService = DioService();
-  var res = await dioService.getData(ApiConstant.getHomeItem);
 
   runApp(const MyApp());
 }

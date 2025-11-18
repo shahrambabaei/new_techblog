@@ -20,27 +20,29 @@ class HomeScreen extends GetView<HomeScreenController> {
       physics: BouncingScrollPhysics(),
       child: Obx(
         () {
-          return controller.isLoading.value == true
-            ? Column(
-                children: [
-                  bannerWidget(),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  tagListWidget(),
-                  seeMoreWidget(),
-                  blogListWidget(),
-                  seeMorepodcastWidget(),
-                  podcastWidget(),
-                  SizedBox(
-                    height: 100,
-                  )
-                ],
-              )
-            : SpinKitFadingCircle(
-                color: SolidColors.primaryColor,
-                size: 32,
-              );
+          if (controller.isLoading.value == true) {
+            return SpinKitFadingCircle(
+                  color: SolidColors.primaryColor,
+                  size: 32,
+                );
+          } else {
+            return Column(
+                  children: [
+                    bannerWidget(),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    tagListWidget(),
+                    seeMoreWidget(),
+                    blogListWidget(),
+                    seeMorepodcastWidget(),
+                    podcastWidget(),
+                    SizedBox(
+                      height: 100,
+                    )
+                  ],
+                );
+          }
         },
       ),
     );
@@ -107,7 +109,7 @@ class HomeScreen extends GetView<HomeScreenController> {
       height: 40,
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 15),
-        itemCount: tagList.length,
+        itemCount: controller.tagList.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Container(
@@ -129,10 +131,10 @@ class HomeScreen extends GetView<HomeScreenController> {
                   size: 16,
                 ),
                 SizedBox(
-                  width: 5,
+                  width: 8,
                 ),
                 Text(
-                  tagList[index].title,
+                  controller.tagList[index].title!,
                   style: Theme.of(Get.context!)
                       .textTheme
                       .headlineSmall!
