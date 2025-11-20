@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_techblog/component/mystring.dart';
+import 'package:new_techblog/component/text_style.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 import 'package:new_techblog/view/maycats_widget.dart';
 
@@ -29,14 +30,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             Text(
               MyString.welcome,
-              style: textTheme.headlineMedium,
+              style: headlineMedium
+,
             ),
             SizedBox(
               height: 20,
             ),
             Text(
               MyString.welcomeescription,
-              style: textTheme.headlineMedium,
+              style: headlineMedium
+,
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -49,7 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               },
               child: Text(
                 "بزن بریم",
-                style: textTheme.displayLarge,
+                style: displayLarge,
               ),
             )
           ],
@@ -80,7 +83,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 Text(
                   MyString.insertYourEmail,
-                  style: textTheme.headlineMedium,
+                  style: headlineMedium
+,
                 ),
                 Padding(
                   padding:
@@ -139,7 +143,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 Text(
                   MyString.activateCode,
-                  style: textTheme.headlineMedium,
+                  style: headlineMedium
+,
                 ),
                 Padding(
                   padding:

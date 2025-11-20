@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:new_techblog/component/api_constant.dart';
 import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/my_binding.dart';
-import 'package:new_techblog/services/dio_service.dart';
+import 'package:new_techblog/view/article_list_screen.dart';
 import 'package:new_techblog/view/main_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:new_techblog/view/splash_screen.dart';
@@ -33,6 +32,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: "/mainScreen",
           page: () => MainScreen(),
+        ),
+        GetPage(
+          name: "/articleListView()",
+          page: () => ArticleListScreen(),
         ),
         GetPage(
           name: "/",
@@ -68,40 +71,7 @@ class MyApp extends StatelessWidget {
                 backgroundColor:
                     WidgetStatePropertyAll(SolidColors.primaryColor))),
         fontFamily: "dana",
-        textTheme: TextTheme(
-          displayLarge: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-              color: SolidColors.posterTitle),
-          titleMedium: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 14,
-              fontWeight: FontWeight.w300,
-              color: SolidColors.posterSubTitle),
-          bodyLarge: TextStyle(
-              fontFamily: 'dana', fontSize: 13, fontWeight: FontWeight.w300),
-          displayMedium: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 14,
-              color: Colors.white,
-              fontWeight: FontWeight.w300),
-          displaySmall: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 14,
-              color: SolidColors.seeMore,
-              fontWeight: FontWeight.w700),
-          headlineMedium: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 14,
-              color: Color.fromARGB(255, 70, 70, 70),
-              fontWeight: FontWeight.w700),
-          headlineSmall: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 14,
-              color: SolidColors.hintText,
-              fontWeight: FontWeight.w700),
-        ),
+
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),

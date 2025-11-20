@@ -4,9 +4,11 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/component/mystring.dart';
+import 'package:new_techblog/component/text_style.dart';
 import 'package:new_techblog/controller/home_screen_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 import 'package:new_techblog/models/fake_data.dart';
+import 'package:new_techblog/view/article_list_screen.dart';
 
 class HomeScreen extends GetView<HomeScreenController> {
   const HomeScreen({
@@ -22,26 +24,26 @@ class HomeScreen extends GetView<HomeScreenController> {
         () {
           if (controller.isLoading.value == true) {
             return SpinKitFadingCircle(
-                  color: SolidColors.primaryColor,
-                  size: 32,
-                );
+              color: SolidColors.primaryColor,
+              size: 32,
+            );
           } else {
             return Column(
-                  children: [
-                    bannerWidget(),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    tagListWidget(),
-                    seeMoreWidget(),
-                    blogListWidget(),
-                    seeMorepodcastWidget(),
-                    podcastWidget(),
-                    SizedBox(
-                      height: 100,
-                    )
-                  ],
-                );
+              children: [
+                bannerWidget(),
+                SizedBox(
+                  height: 50,
+                ),
+                tagListWidget(),
+                seeMoreWidget(),
+                blogListWidget(),
+                seeMorepodcastWidget(),
+                podcastWidget(),
+                SizedBox(
+                  height: 100,
+                )
+              ],
+            );
           }
         },
       ),
@@ -93,10 +95,7 @@ class HomeScreen extends GetView<HomeScreenController> {
             right: 10,
             child: Text(
               controller.bannerModel.value.title!,
-              style: Theme.of(Get.context!)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(color: Colors.white),
+              style: headlineMedium.copyWith(color: Colors.white),
             ),
           )
         ],
@@ -135,10 +134,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                 ),
                 Text(
                   controller.tagList[index].title!,
-                  style: Theme.of(Get.context!)
-                      .textTheme
-                      .headlineSmall!
-                      .copyWith(color: Colors.white, fontSize: 16),
+                  style:
+                      headlineSmall.copyWith(color: Colors.white, fontSize: 16),
                 ),
               ],
             ),
@@ -151,20 +148,25 @@ class HomeScreen extends GetView<HomeScreenController> {
   Widget seeMoreWidget() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
-      child: Row(
-        children: [
-          ImageIcon(
-            Assets.icons.pen.image().image,
-            color: SolidColors.seeMore,
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          Text(
-            MyString.viewHotestBlog,
-            style: Theme.of(Get.context!).textTheme.displaySmall,
-          )
-        ],
+      child: InkWell(
+        onTap: () {
+          Get.toNamed("/articleListView");
+        },
+        child: Row(
+          children: [
+            ImageIcon(
+              Assets.icons.pen.image().image,
+              color: SolidColors.seeMore,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+              MyString.viewHotestBlog,
+              style: displaySmall,
+            )
+          ],
+        ),
       ),
     );
   }
@@ -226,18 +228,14 @@ class HomeScreen extends GetView<HomeScreenController> {
                               children: [
                                 Text(
                                   controller.articleList[index].author!,
-                                  style: Theme.of(Get.context!)
-                                      .textTheme
-                                      .displayMedium,
+                                  style: displayMedium,
                                 ),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
                                       controller.articleList[index].view!,
-                                      style: Theme.of(Get.context!)
-                                          .textTheme
-                                          .displayMedium,
+                                      style: displayMedium,
                                     ),
                                     SizedBox(
                                       width: 5,
@@ -260,7 +258,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         controller.articleList[index].title!,
-                        style: Theme.of(Get.context!).textTheme.headlineMedium,
+                        style: headlineMedium,
                       )
                     ],
                   ),
@@ -287,7 +285,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           ),
           Text(
             MyString.viewHotestPodCasts,
-            style: Theme.of(Get.context!).textTheme.displaySmall,
+            style: displaySmall,
           )
         ],
       ),
@@ -343,7 +341,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       controller.podcastList[index].title!,
-                      style: Theme.of(Get.context!).textTheme.headlineMedium,
+                      style: headlineMedium,
                     )
                   ],
                 ),

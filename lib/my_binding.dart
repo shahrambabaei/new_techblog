@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:new_techblog/controller/article_screen_controller.dart';
 import 'package:new_techblog/controller/home_screen_controller.dart';
 import 'package:new_techblog/controller/main_screen_controller.dart';
 import 'package:new_techblog/controller/splash_screen_controller.dart';
@@ -14,6 +15,9 @@ class MyBinding implements Bindings {
     );
     Get.put(
       HomeScreenController(),
+    );
+    Get.put(
+      ArticleScreenController(),
     );
   }
 }

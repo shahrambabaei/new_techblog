@@ -15,6 +15,7 @@ class SolidColors {
   static const Color submitArticle = Color.fromARGB(255, 209, 209, 209);
   static const Color submitPodCast = Color.fromARGB(255, 246, 246, 246);
   static const Color subText = Color.fromARGB(255, 197, 197, 197);
+  static const Color subText2 = Color.fromARGB(255, 44, 125, 180);
   static const Color hashTag = Color.fromARGB(255, 255, 255, 255);
   static const Color seeMore = Color.fromARGB(255, 40, 107, 184);
   static const Color dividerColor = Color.fromARGB(255, 112, 112, 112);
@@ -28,6 +29,7 @@ class SolidColors {
   static const Color errorColor = Color.fromARGB(255, 227, 10, 10);
   static const Color lightBackColor = Color.fromARGB(255, 255, 255, 255);
   static const Color minutesColorColor = Color.fromARGB(255, 203, 202, 202);
+  static const Color gray = Color.fromARGB(255, 97, 97, 97);
 }
 
 class GradientColors {

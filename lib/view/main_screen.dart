@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_techblog/component/bottomNavigation_widget.dart';
 import 'package:new_techblog/component/my_color.dart';
+import 'package:new_techblog/component/text_style.dart';
 import 'package:new_techblog/controller/main_screen_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 import 'package:new_techblog/view/register_screen.dart';
@@ -34,7 +35,7 @@ class MainScreen extends GetView<MainScreenController> {
               ListTile(
                 title: Text(
                   'پروفایل کاربر',
-                  style: controller.textTheme.headlineSmall!
+                  style: headlineSmall
                       .copyWith(color: Colors.black),
                 ),
                 onTap: () {},
@@ -45,7 +46,8 @@ class MainScreen extends GetView<MainScreenController> {
               ListTile(
                 title: Text(
                   " درباره تک‌بلاگ",
-                  style: controller.textTheme.headlineMedium!
+                  style: headlineMedium
+!
                       .copyWith(color: Colors.black),
                 ),
                 onTap: () {},
@@ -56,7 +58,7 @@ class MainScreen extends GetView<MainScreenController> {
               ListTile(
                 title: Text(
                   'اشتراک گذاری تک بلاگ',
-                  style: controller.textTheme.headlineSmall!
+                  style: headlineSmall
                       .copyWith(color: Colors.black),
                 ),
                 onTap: () {
@@ -71,7 +73,7 @@ class MainScreen extends GetView<MainScreenController> {
               ListTile(
                 title: Text(
                   "تک‌بلاگ در گیت هاب",
-                  style: controller.textTheme.headlineSmall!
+                  style: headlineSmall
                       .copyWith(color: Colors.black),
                 ),
                 onTap: () async {

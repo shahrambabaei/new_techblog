@@ -89,7 +89,8 @@ class _SowModalBottomSheetWidgetState extends State<SowModalBottomSheetWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(widget.title, style: textTheme.headlineMedium),
+          Text(widget.title, style: headlineMedium
+),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
             child: Form(

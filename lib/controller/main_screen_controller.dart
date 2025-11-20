@@ -13,11 +13,9 @@ class MainScreenController extends GetxController {
   ];
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final Uri url = Uri.parse('https://flutter.dev');
-  late TextTheme textTheme;
 
   @override
   void onInit() {
     super.onInit();
-    textTheme = TextTheme.of(Get.context!);
   }
 }

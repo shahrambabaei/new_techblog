@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/component/mystring.dart';
+import 'package:new_techblog/component/text_style.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 
 import '../models/fake_data.dart';
@@ -43,7 +44,8 @@ class _MyCatsWidgetState extends State<MyCatsWidget> {
                 Text(
                   MyString.cats,
                   textAlign: TextAlign.center,
-                  style: textTheme.headlineMedium,
+                  style: headlineMedium
+,
                 ),
                 SizedBox(
                   height: 20,

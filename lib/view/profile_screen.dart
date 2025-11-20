@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:new_techblog/component/divider_widget.dart';
 import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/component/mystring.dart';
+import 'package:new_techblog/component/text_style.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Text(
                     MyString.imageProfileEdit,
-                    style: Theme.of(context).textTheme.displaySmall,
+                    style: displaySmall,
                   )
                 ],
               ),
@@ -48,14 +49,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Text(
                 "شهرام بابایی",
-                style: Theme.of(context).textTheme.headlineMedium,
+                style:headlineMedium
+,
               ),
               SizedBox(
                 height: 10,
               ),
               Text(
                 "shahram.b6996@gmail.com",
-                style: Theme.of(context).textTheme.headlineMedium,
+                style:headlineMedium
+,
               ),
               SizedBox(
                 height: 50,
