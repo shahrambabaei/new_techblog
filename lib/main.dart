@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/my_binding.dart';
 import 'package:new_techblog/view/article_list_screen.dart';
+import 'package:new_techblog/view/article_screen.dart';
 import 'package:new_techblog/view/main_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:new_techblog/view/splash_screen.dart';
@@ -38,8 +39,12 @@ class MyApp extends StatelessWidget {
           page: () => ArticleListScreen(),
         ),
         GetPage(
+          name: "/articleScreen",
+          page: () => ArticleScreen(),
+        ),
+        GetPage(
           name: "/",
-          page: () => SplashScreen(),
+          page: () => ArticleListScreen(),
         ),
       ],
       title: 'techBlog',

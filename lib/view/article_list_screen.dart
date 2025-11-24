@@ -5,10 +5,10 @@ import 'package:new_techblog/component/my_appbar.dart';
 import 'package:get/get.dart';
 import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/component/text_style.dart';
-import 'package:new_techblog/controller/article_screen_controller.dart';
-import 'package:new_techblog/controller/home_screen_controller.dart';
+import 'package:new_techblog/controller/article_list_screen_controller.dart';
+import 'package:new_techblog/controller/single_article_screen_controller.dart';
 
-class ArticleListScreen extends GetView<ArticleScreenController> {
+class ArticleListScreen extends GetView<ArticleListScreenController> {
   const ArticleListScreen({super.key});
 
   @override
@@ -30,83 +30,94 @@ class ArticleListScreen extends GetView<ArticleScreenController> {
                   padding: const EdgeInsets.all(8.0),
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 5),
-                    child: SizedBox(
-                      height: 110,
-                      child: Row(
-                        children: [
-                          Container(
-                            height: double.infinity,
-                            width: 110,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: CachedNetworkImage(
-                              imageUrl: controller.articleList[index].image!,
-                              placeholder: (context, url) => SpinKitFadingCircle(
-                                size: 32,
-                                color: SolidColors.primaryColor,
+                    child: InkWell(
+                      onTap: () {
+                        Get.find<SingleArticleScreenController>().id=controller.articleList[index].id as int;
+                        Get.toNamed("/articleScreen");
+                      },
+                      child: SizedBox(
+                        height: 110,
+                        child: Row(
+                          children: [
+                            Container(
+                              height: double.infinity,
+                              width: 110,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
                               ),
-                              errorWidget: (context, url, error) => Icon(
-                                Icons.image_not_supported_outlined,
-                                size: 32,
-                              ),
-                              imageBuilder: (context, imageProvider) => Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
-                                    image: DecorationImage(
-                                        image: imageProvider, fit: BoxFit.cover)),
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Text(
-                                  controller.articleList[index].title!,
-                                  style: appBarTextStyle.copyWith(fontSize: 14),
+                              child: CachedNetworkImage(
+                                imageUrl: controller.articleList[index].image!,
+                                placeholder: (context, url) =>
+                                    SpinKitFadingCircle(
+                                  size: 32,
+                                  color: SolidColors.primaryColor,
                                 ),
-                                SizedBox(
-                                  height: 10,
+                                errorWidget: (context, url, error) => Icon(
+                                  Icons.image_not_supported_outlined,
+                                  size: 32,
                                 ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          controller.articleList[index].author ??
-                                              "",
-                                          style: subTitleStyle1,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 5, right: 10),
-                                          child: Text(
-                                            "بازدید",
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover)),
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    controller.articleList[index].title!,
+                                    style:
+                                        appBarTextStyle.copyWith(fontSize: 14),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            controller.articleList[index]
+                                                    .author ??
+                                                "",
                                             style: subTitleStyle1,
                                           ),
-                                        ),
-                                        Text(
-                                          controller.articleList[index].view!,
-                                          style: subTitleStyle1,
-                                        )
-                                      ],
-                                    ),
-                                    Text(
-                                      controller.articleList[index].catName!,
-                                      style: subTitleStyle,
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          )
-                        ],
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 5, right: 10),
+                                            child: Text(
+                                              "بازدید",
+                                              style: subTitleStyle1,
+                                            ),
+                                          ),
+                                          Text(
+                                            controller.articleList[index].view!,
+                                            style: subTitleStyle1,
+                                          )
+                                        ],
+                                      ),
+                                      Text(
+                                        controller.articleList[index].catName!,
+                                        style: subTitleStyle,
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),

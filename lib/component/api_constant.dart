@@ -1,7 +1,9 @@
 class ApiConstant {
-  static const baseUrl = "https://techblog.sasansafari.com/";
-  static const hostusl = "https://techblog.sasansafari.com";
-  static const getHomeItem = "${baseUrl}Techblog/api/home/?command=index";
+  static const baseUrl = "https://techblog.sasansafari.com/Techblog/api/";
+  static const baseImgUrl = "https://techblog.sasansafari.com";
+  static const getHomeItem = "${baseUrl}home/?command=index";
   static const getArticleItem =
-      "${baseUrl}Techblog/api/article/get.php?command=new&user_id=1";
+      "${baseUrl}article/get.php?command=new&user_id=1";
+  static const getSingleArticleItem =
+      "${baseUrl}article/get.php?command=info&id=1&user_id=1";
 }

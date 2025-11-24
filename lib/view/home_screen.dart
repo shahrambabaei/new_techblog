@@ -22,10 +22,22 @@ class HomeScreen extends GetView<HomeScreenController> {
       physics: BouncingScrollPhysics(),
       child: Obx(
         () {
-          if (controller.isLoading.value == true) {
-            return SpinKitFadingCircle(
-              color: SolidColors.primaryColor,
-              size: 32,
+          if (controller.isLoading.value) {
+            return SizedBox(
+              height: Get.height,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SpinKitFadingCircle(
+                      color: SolidColors.primaryColor,
+                      size: 32,
+                    ),
+                    SizedBox(height: 16),
+                    Text('در حال بارگذاری...'),
+                  ],
+                ),
+              ),
             );
           } else {
             return Column(

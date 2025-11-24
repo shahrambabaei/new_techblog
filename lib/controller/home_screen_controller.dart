@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:new_techblog/component/api_constant.dart';
 import 'package:new_techblog/models/article_model.dart';
@@ -9,10 +8,10 @@ import 'package:new_techblog/services/dio_service.dart';
 
 class HomeScreenController extends GetxController {
   Rx<BannerModel> bannerModel = BannerModel().obs;
-  RxList<ArticleModel> articleList = RxList();
+  RxList<ArticleInfoModel> articleList = RxList();
   RxList<PodcastModel> podcastList = RxList();
   RxList<TagModel> tagList = RxList();
-  RxBool isLoading = false.obs;
+  RxBool isLoading = true.obs;
 
   @override
   void onInit() {
@@ -21,30 +20,34 @@ class HomeScreenController extends GetxController {
   }
 
   getDate() async {
-    var response = await DioService().getData(ApiConstant.getHomeItem);
-    if (response.statusCode == 200) {
-      isLoading.value = true;
-      response.data["top_podcasts"].map((e) {
-        podcastList.add(PodcastModel.fromJson(e));
-      }).toList();
+    try {
+      var response = await DioService().getData(ApiConstant.getHomeItem);
+      if (response.statusCode == 200) {
+        isLoading.value = true;
+        response.data["top_podcasts"].map((e) {
+          podcastList.add(PodcastModel.fromJson(e));
+        }).toList();
 
-      //banner
-      bannerModel.value = BannerModel.fromJson(response.data["poster"]);
+        //banner
+        bannerModel.value = BannerModel.fromJson(response.data["poster"]);
 
-      response.data["tags"].map((e) {
-        tagList.add(TagModel.fromJson(e));
-      }).toList();
+        response.data["tags"].map((e) {
+          tagList.add(TagModel.fromJson(e));
+        }).toList();
 
-      //Article
-      response.data["top_visited"].map((e) {
-        articleList.add(ArticleModel.fromJson(e));
-      }).toList();
+        //Article
+        response.data["top_visited"].map((e) {
+          articleList.add(ArticleInfoModel.fromJson(e));
+        }).toList();
 
-      //podcast
-      response.data["top_podcasts"].map((e) {
-        podcastList.add(PodcastModel.fromJson(e));
-      }).toList();
-      isLoading.value = false;
+        //podcast
+        response.data["top_podcasts"].map((e) {
+          podcastList.add(PodcastModel.fromJson(e));
+        }).toList();
+        isLoading.value = false;
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

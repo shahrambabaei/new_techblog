@@ -10,7 +10,7 @@ class BannerModel {
   BannerModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    image = ApiConstant.hostusl + json['image'];
+    image = ApiConstant.baseImgUrl + json['image'];
   }
 
   Map<String, dynamic> toJson() {

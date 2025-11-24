@@ -51,11 +51,27 @@ class $AssetsImagesGen {
   /// File path: assets/images/profile.png
   AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
 
+  /// File path: assets/images/profileAvatar.png
+  AssetGenImage get profileAvatar =>
+      const AssetGenImage('assets/images/profileAvatar.png');
+
+  /// File path: assets/images/single_place_holder.jpg
+  AssetGenImage get singlePlaceHolder =>
+      const AssetGenImage('assets/images/single_place_holder.jpg');
+
   /// File path: assets/images/techbot.svg
   String get techbot => 'assets/images/techbot.svg';
 
   /// List of all assets
-  List<dynamic> get values => [banner, downArrow, logosplash, profile, techbot];
+  List<dynamic> get values => [
+        banner,
+        downArrow,
+        logosplash,
+        profile,
+        profileAvatar,
+        singlePlaceHolder,
+        techbot
+      ];
 }
 
 class Assets {

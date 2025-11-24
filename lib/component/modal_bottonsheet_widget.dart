@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_techblog/component/text_style.dart';
 
 class SowModalBottomSheetWidget extends StatefulWidget {
   final String title;
@@ -47,7 +48,8 @@ class SowModalBottomSheetWidget extends StatefulWidget {
   // }
 
   @override
-  State<SowModalBottomSheetWidget> createState() => _SowModalBottomSheetWidgetState();
+  State<SowModalBottomSheetWidget> createState() =>
+      _SowModalBottomSheetWidgetState();
 }
 
 class _SowModalBottomSheetWidgetState extends State<SowModalBottomSheetWidget> {
@@ -89,8 +91,7 @@ class _SowModalBottomSheetWidgetState extends State<SowModalBottomSheetWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(widget.title, style: headlineMedium
-),
+          Text(widget.title, style: headlineMedium),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
             child: Form(
@@ -107,8 +108,7 @@ class _SowModalBottomSheetWidgetState extends State<SowModalBottomSheetWidget> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                onChanged: (value) {
-                },
+                onChanged: (value) {},
                 // validator: (value) {
                 //   final v = (value ?? "").trim();
                 //   if (v.isEmpty) return "ایمیل را وارد کنید";

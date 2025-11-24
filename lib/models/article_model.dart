@@ -1,6 +1,6 @@
 import 'package:new_techblog/component/api_constant.dart';
 
-class ArticleModel {
+class ArticleInfoModel {
    String? id;
    String? title;
    String? catId;
@@ -11,7 +11,7 @@ class ArticleModel {
    String? status;
    String? createdAt;
 
-  ArticleModel(
+  ArticleInfoModel(
       {required this.id,
       required this.title,
       required this.image,
@@ -22,10 +22,10 @@ class ArticleModel {
       required this.status,
       required this.createdAt});
 
-  ArticleModel.fromJson(Map<String, dynamic> json) {
+  ArticleInfoModel.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     title = json["title"];
-    image = ApiConstant.hostusl + json["image"];
+    image = ApiConstant.baseImgUrl + json["image"];
     catId = json["cat_id"];
     catName = json["cat_name"];
     author = json["author"];

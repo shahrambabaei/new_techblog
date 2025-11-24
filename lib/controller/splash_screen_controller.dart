@@ -5,7 +5,7 @@ class SplashController extends GetxController {
   void onInit() {
     super.onInit();
     Future.delayed(Duration(seconds: 3)).then(
-      (value) => Get.toNamed("/mainScreen"),
+      (value) => Get.toNamed("/articleListView()"),
     );
   }
 }
