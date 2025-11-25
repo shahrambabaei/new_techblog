@@ -47,7 +47,7 @@ class HomeScreenController extends GetxController {
         isLoading.value = false;
       }
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 }

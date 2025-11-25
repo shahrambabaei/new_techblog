@@ -32,8 +32,10 @@ class ArticleListScreen extends GetView<ArticleListScreenController> {
                     padding: const EdgeInsets.only(bottom: 5),
                     child: InkWell(
                       onTap: () {
-                        Get.find<SingleArticleScreenController>().id=controller.articleList[index].id as int;
-                        Get.toNamed("/articleScreen");
+                        Get.toNamed("/articleScreen", arguments: {
+                          'articleId':
+                              int.parse(controller.articleList[index].id!)
+                        });
                       },
                       child: SizedBox(
                         height: 110,

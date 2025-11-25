@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: "/",
-          page: () => ArticleListScreen(),
+          page: () => MainScreen(),
         ),
       ],
       title: 'techBlog',

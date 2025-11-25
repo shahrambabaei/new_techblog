@@ -21,8 +21,6 @@ class MyBinding implements Bindings {
     Get.put(
       ArticleListScreenController(),
     );
-    // Get.put(
-    //   SingleArticleScreenController(),
-    // );
+
   }
 }

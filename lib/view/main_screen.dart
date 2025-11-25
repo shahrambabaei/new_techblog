@@ -5,9 +5,6 @@ import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/component/text_style.dart';
 import 'package:new_techblog/controller/main_screen_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
-import 'package:new_techblog/view/register_screen.dart';
-import 'package:new_techblog/view/home_screen.dart';
-import 'package:new_techblog/view/profile_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainScreen extends GetView<MainScreenController> {
@@ -47,7 +44,7 @@ class MainScreen extends GetView<MainScreenController> {
                 title: Text(
                   " درباره تک‌بلاگ",
                   style: headlineMedium
-!
+
                       .copyWith(color: Colors.black),
                 ),
                 onTap: () {},
