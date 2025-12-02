@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: "/articleListView()",
-          page: () => ArticleListScreen(),
+          page: () => ArticleListScreen(title: "مقالات جدید",),
         ),
         GetPage(
           name: "/articleScreen",

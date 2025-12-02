@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:new_techblog/component/ArticleTags%20_widget.dart';
 import 'package:new_techblog/component/my_color.dart';
+import 'package:new_techblog/component/ralated_widget.dart';
 import 'package:new_techblog/component/text_style.dart';
 import 'package:new_techblog/controller/single_article_screen_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
@@ -49,7 +50,7 @@ class ArticleScreen extends StatelessWidget {
                         height: Get.height * .3,
                         width: Get.width,
                         child: CachedNetworkImage(
-                          imageUrl: controller.singleArticleModel.image!,
+                          imageUrl: controller.singleArticleModel.info!.image!,
                           imageBuilder: (context, imageProvider) => Image(
                             image: imageProvider,
                             fit: BoxFit.cover,
@@ -119,7 +120,7 @@ class ArticleScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
                     child: Text(
-                      controller.singleArticleModel.title!,
+                      controller.singleArticleModel.info!.title!,
                       maxLines: 2,
                       style: appBarTextStyle,
                     ),
@@ -138,18 +139,18 @@ class ArticleScreen extends StatelessWidget {
                             horizontal: 5,
                           ),
                           child: Text(
-                            controller.singleArticleModel.author!,
+                            controller.singleArticleModel.info!.author ?? "",
                             style: TextTheme.of(context).labelLarge,
                           ),
                         ),
-                        Text(controller.singleArticleModel.createdAt!)
+                        Text(controller.singleArticleModel.info!.createdAt!)
                       ],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
-                    child: Text(controller.singleArticleModel.content!),
+                    child: Text(controller.singleArticleModel.info!.content!),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -160,6 +161,10 @@ class ArticleScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
                     child: Text("نوشته های مرتبط"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: RelatedWidget(),
                   )
                 ],
               ),

@@ -9,14 +9,16 @@ import 'package:new_techblog/controller/article_list_screen_controller.dart';
 import 'package:new_techblog/controller/single_article_screen_controller.dart';
 
 class ArticleListScreen extends GetView<ArticleListScreenController> {
-  const ArticleListScreen({super.key});
+  final String title;
+
+  const ArticleListScreen({super.key,required this.title});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: MyAppBar(
-          title: "لیست مقالات",
+          title: title,
         ),
         body: Padding(
           padding: const EdgeInsets.all(14.0),
@@ -37,8 +39,10 @@ class ArticleListScreen extends GetView<ArticleListScreenController> {
                               int.parse(controller.articleList[index].id!)
                         });
                       },
-                      child: SizedBox(
+                      child: Container(
                         height: 110,
+                        key: Key(controller.articleList[index].id ??
+                            'default_$index'),
                         child: Row(
                           children: [
                             Container(
