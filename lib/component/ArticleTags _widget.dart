@@ -16,17 +16,17 @@ class ArticleTagsWidget extends StatelessWidget {
           height: 40,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: controller.singleArticleModel.tags!.length,
+            itemCount: controller.singleArticleModel.value.tags!.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: InkWell(
                   onTap: () {
-                    var tagId = controller.singleArticleModel.tags![index].id;
+                    var tagId = controller.singleArticleModel.value.tags![index].id;
                     Get.find<ArticleListScreenController>()
                         .getArticleListWithTagsId(id: tagId!);
                     Get.to(ArticleListScreen(
-                      title: controller.singleArticleModel.tags![index].title!,
+                      title: controller.singleArticleModel.value.tags![index].title!,
                     ));
                   },
                   child: Container(
@@ -38,7 +38,7 @@ class ArticleTagsWidget extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Text(
-                          controller.singleArticleModel.tags![index].title!),
+                          controller.singleArticleModel.value.tags![index].title!),
                     ),
                   ),
                 ),

@@ -18,80 +18,90 @@ class RelatedWidget extends StatelessWidget {
           height: 220,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: controller.singleArticleModel.related!.length,
+            itemCount: controller.singleArticleModel.value.related!.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(left: 20),
-                child: SizedBox(
-                  width: 200,
-                  child: Column(
-                    children: [
-                      Stack(
-                        children: [
-                          Container(
-                            width: 200,
-                            height: 160,
-                            foregroundDecoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              // gradient: LinearGradient(
-                              //     colors: GradientColors.tags,
-                              //     begin: Alignment.bottomCenter,
-                              //     end: Alignment.topCenter
-                              // ),
-                            ),
-                            child: CachedNetworkImage(
-                              imageUrl: controller
-                                  .singleArticleModel.related![index].image!,
-                              imageBuilder: (context, imageProvider) {
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover),
-                                  ),
-                                );
-                              },
-                              placeholder: (context, url) =>
-                                  SpinKitFadingCircle(
-                                color: SolidColors.primaryColor,
-                                size: 32,
+                child: GestureDetector(
+                  onTap: () {
+                    controller.getData(
+                      int.parse(
+                          controller.singleArticleModel.value.related![index].id!),
+                    );
+                  },
+                  child: SizedBox(
+                    width: 200,
+                    child: Column(
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                              width: 200,
+                              height: 160,
+                              foregroundDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                // gradient: LinearGradient(
+                                //     colors: GradientColors.tags,
+                                //     begin: Alignment.bottomCenter,
+                                //     end: Alignment.topCenter
+                                // ),
                               ),
-                              errorWidget: (context, url, error) => Icon(
-                                Icons.image_not_supported_outlined,
-                                size: 32,
+                              child: CachedNetworkImage(
+                                imageUrl: controller
+                                    .singleArticleModel.value.related![index].image!,
+                                imageBuilder: (context, imageProvider) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover),
+                                    ),
+                                  );
+                                },
+                                placeholder: (context, url) =>
+                                    SpinKitFadingCircle(
+                                  color: SolidColors.primaryColor,
+                                  size: 32,
+                                ),
+                                errorWidget: (context, url, error) => Icon(
+                                  Icons.image_not_supported_outlined,
+                                  size: 32,
+                                ),
+                                fit: BoxFit.cover,
                               ),
-                              fit: BoxFit.cover,
                             ),
-                          ),
-                          Positioned(
-                              left: 10,
-                              right: 10,
-                              bottom: 10,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    controller.singleArticleModel
-                                        .related![index].author??"",
-                                    style: displayMedium,
-                                  ),
-                                  Text(
-                                      controller.singleArticleModel
-                                          .related![index].view??"",
-                                      style: displayMedium)
-                                ],
-                              ))
-                        ],
-                      ),
-                      Text(
-                        controller.singleArticleModel.related![index].title!,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: headlineMedium,
-                      )
-                    ],
+                            Positioned(
+                                left: 10,
+                                right: 10,
+                                bottom: 10,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      controller.singleArticleModel.value
+                                              .related![index].author ??
+                                          "",
+                                      style: displayMedium,
+                                    ),
+                                    Text(
+                                        controller.singleArticleModel.value
+                                                .related![index].view ??
+                                            "",
+                                        style: displayMedium)
+                                  ],
+                                ))
+                          ],
+                        ),
+                        Text(
+                          controller.singleArticleModel.value.related![index].title!,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: headlineMedium,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               );

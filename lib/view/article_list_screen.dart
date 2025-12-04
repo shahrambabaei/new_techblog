@@ -11,10 +11,12 @@ import 'package:new_techblog/controller/single_article_screen_controller.dart';
 class ArticleListScreen extends GetView<ArticleListScreenController> {
   final String title;
 
-  const ArticleListScreen({super.key,required this.title});
+  const ArticleListScreen({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
+    SingleArticleScreenController singleArticleScreenController =
+        Get.find<SingleArticleScreenController>();
     return SafeArea(
       child: Scaffold(
         appBar: MyAppBar(
@@ -34,12 +36,11 @@ class ArticleListScreen extends GetView<ArticleListScreenController> {
                     padding: const EdgeInsets.only(bottom: 5),
                     child: InkWell(
                       onTap: () {
-                        Get.toNamed("/articleScreen", arguments: {
-                          'articleId':
-                              int.parse(controller.articleList[index].id!)
-                        });
+                        singleArticleScreenController.getData(
+                          int.parse(controller.articleList[index].id!),
+                        );
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 110,
                         key: Key(controller.articleList[index].id ??
                             'default_$index'),

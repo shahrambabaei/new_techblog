@@ -6,6 +6,7 @@ import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/component/mystring.dart';
 import 'package:new_techblog/component/text_style.dart';
 import 'package:new_techblog/controller/home_screen_controller.dart';
+import 'package:new_techblog/controller/single_article_screen_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 import 'package:new_techblog/models/fake_data.dart';
 import 'package:new_techblog/view/article_list_screen.dart';
@@ -194,85 +195,94 @@ class HomeScreen extends GetView<HomeScreenController> {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SizedBox(
-                  width: 200,
-                  child: Column(
-                    children: [
-                      Stack(
-                        children: [
-                          Container(
-                            width: 200,
-                            height: 160,
-                            foregroundDecoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              gradient: LinearGradient(
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                  colors: GradientColors.blogPost),
-                            ),
-                            child: CachedNetworkImage(
-                              imageUrl: controller.articleList[index].image!,
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  image: DecorationImage(
-                                      image: imageProvider, fit: BoxFit.cover),
+                child: InkWell(
+                  onTap: () {
+                    Get.find<SingleArticleScreenController>()
+                        .getData(int.parse(controller.articleList[index].id!));
+                  },
+                  child: SizedBox(
+                    width: 200,
+                    child: Column(
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                              width: 200,
+                              height: 160,
+                              foregroundDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                gradient: LinearGradient(
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                    colors: GradientColors.blogPost),
+                              ),
+                              child: CachedNetworkImage(
+                                imageUrl: controller.articleList[index].image!,
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover),
+                                  ),
+                                ),
+                                placeholder: (context, url) =>
+                                    SpinKitFadingCircle(
+                                  color: SolidColors.primaryColor,
+                                  size: 32,
+                                ),
+                                errorWidget: (context, url, error) => Icon(
+                                  Icons.image_not_supported_outlined,
+                                  size: 32,
                                 ),
                               ),
-                              placeholder: (context, url) =>
-                                  SpinKitFadingCircle(
-                                color: SolidColors.primaryColor,
-                                size: 32,
-                              ),
-                              errorWidget: (context, url, error) => Icon(
-                                Icons.image_not_supported_outlined,
-                                size: 32,
-                              ),
                             ),
-                          ),
-                          Positioned(
-                            left: 10,
-                            right: 10,
-                            bottom: 10,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  controller.articleList[index].author!,
-                                  style: displayMedium,
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      controller.articleList[index].view!,
-                                      style: displayMedium,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Icon(
-                                      Icons.remove_red_eye_sharp,
-                                      color: Colors.white,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        controller.articleList[index].title!,
-                        style: headlineMedium,
-                      )
-                    ],
+                            Positioned(
+                              left: 10,
+                              right: 10,
+                              bottom: 10,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    controller.articleList[index].author??"",
+                                    style: displayMedium,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        controller.articleList[index].view!,
+                                        style: displayMedium,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Icon(
+                                        Icons.remove_red_eye_sharp,
+                                        color: Colors.white,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          controller.articleList[index].title!,
+                          style: headlineMedium,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               );
