@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:new_techblog/component/ArticleTags%20_widget.dart';
 import 'package:new_techblog/component/my_color.dart';
-import 'package:new_techblog/component/ralated_widget.dart';
+import 'package:new_techblog/view/ralated_widget.dart';
 import 'package:new_techblog/component/text_style.dart';
 import 'package:new_techblog/controller/single_article_screen_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';

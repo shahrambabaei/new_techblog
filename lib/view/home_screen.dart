@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/component/mystring.dart';
 import 'package:new_techblog/component/text_style.dart';
+import 'package:new_techblog/controller/article_list_screen_controller.dart';
 import 'package:new_techblog/controller/home_screen_controller.dart';
 import 'package:new_techblog/controller/single_article_screen_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
@@ -124,33 +125,45 @@ class HomeScreen extends GetView<HomeScreenController> {
         itemCount: controller.tagList.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return Container(
-            height: 40,
-            margin: EdgeInsets.only(left: 10),
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(24),
-                gradient: LinearGradient(
-                    begin: Alignment.centerRight,
-                    end: Alignment.centerLeft,
-                    colors: GradientColors.tags)),
-            child: Row(
-              children: [
-                ImageIcon(
-                  Assets.icons.hashTagIcon.image().image,
-                  color: Colors.white,
-                  size: 16,
+          return InkWell(
+            onTap: () {
+              var tagId = controller.tagList[index].id;
+              Get.find<ArticleListScreenController>()
+                  .getArticleListWithTagsId(id: tagId!);
+              Get.to(
+                ArticleListScreen(
+                  title: controller.tagList[index].title!,
                 ),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  controller.tagList[index].title!,
-                  style:
-                      headlineSmall.copyWith(color: Colors.white, fontSize: 16),
-                ),
-              ],
+              );
+            },
+            child: Container(
+              height: 40,
+              margin: EdgeInsets.only(left: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(24),
+                  gradient: LinearGradient(
+                      begin: Alignment.centerRight,
+                      end: Alignment.centerLeft,
+                      colors: GradientColors.tags)),
+              child: Row(
+                children: [
+                  ImageIcon(
+                    Assets.icons.hashTagIcon.image().image,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    controller.tagList[index].title!,
+                    style: headlineSmall.copyWith(
+                        color: Colors.white, fontSize: 16),
+                  ),
+                ],
+              ),
             ),
           );
         },
@@ -247,7 +260,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    controller.articleList[index].author??"",
+                                    controller.articleList[index].author ?? "",
                                     style: displayMedium,
                                   ),
                                   Row(

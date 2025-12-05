@@ -25,6 +25,24 @@ class ArticleListScreen extends GetView<ArticleListScreenController> {
         body: Padding(
           padding: const EdgeInsets.all(14.0),
           child: Obx(() {
+            if (controller.isLoading.value) {
+              return SizedBox(
+                height: Get.height,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SpinKitFadingCircle(
+                        color: SolidColors.primaryColor,
+                        size: 32,
+                      ),
+                      SizedBox(height: 16),
+                      Text('در حال بارگذاری...'),
+                    ],
+                  ),
+                ),
+              );
+            }
             return SizedBox(
               height: Get.height,
               child: ListView.builder(

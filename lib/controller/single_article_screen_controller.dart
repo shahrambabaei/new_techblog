@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:new_techblog/component/api_constant.dart';
 import 'package:new_techblog/models/single_article_model.dart';
@@ -20,6 +19,6 @@ class SingleArticleScreenController extends GetxController {
     }
 
     isLoading.value = false;
-    Get.to(ArticleScreen());
+    Get.to(() => ArticleScreen());
   }
 }
