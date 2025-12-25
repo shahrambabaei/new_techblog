@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_techblog/view/home_screen.dart';
 import 'package:new_techblog/view/profile_screen.dart';
-import 'package:new_techblog/view/register_screen.dart';
+import 'package:new_techblog/view/register/register_screen.dart';
 
 class MainScreenController extends GetxController {
   RxInt selectedIndex = 0.obs;
@@ -11,7 +11,7 @@ class MainScreenController extends GetxController {
     RegisterScreen(),
     ProfileScreen(),
   ];
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+   // GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final Uri url = Uri.parse('https://flutter.dev');
 
   @override

@@ -6,4 +6,6 @@ class ApiConstant {
       "${baseUrl}article/get.php?command=new&user_id=1";
   static const getSingleArticleItem =
       "${baseUrl}article/get.php?command=info&id=1&user_id=1";
+  static const postRegister=
+      "${baseUrl}register/action.php";
 }

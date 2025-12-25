@@ -14,7 +14,7 @@ class MainScreen extends GetView<MainScreenController> {
   Widget build(BuildContext context) {
     final Uri url = Uri.parse('https://flutter.dev');
     return Scaffold(
-      key: controller.scaffoldKey,
+
       drawer: Drawer(
         backgroundColor: SolidColors.scaffoldBg,
         child: Padding(
@@ -92,7 +92,7 @@ class MainScreen extends GetView<MainScreenController> {
           builder: (context) {
             return IconButton(
               onPressed: () {
-                controller.scaffoldKey.currentState!.openDrawer();
+                // controller.scaffoldKey.currentState!.openDrawer();
               },
               icon: Icon(Icons.menu),
             );

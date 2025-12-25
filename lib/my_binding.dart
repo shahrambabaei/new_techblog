@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:new_techblog/controller/article_list_screen_controller.dart';
 import 'package:new_techblog/controller/home_screen_controller.dart';
 import 'package:new_techblog/controller/main_screen_controller.dart';
+import 'package:new_techblog/controller/register_controller.dart';
 import 'package:new_techblog/controller/single_article_screen_controller.dart';
 import 'package:new_techblog/controller/splash_screen_controller.dart';
 import 'package:new_techblog/models/single_article_model.dart';
@@ -24,6 +25,8 @@ class MyBinding implements Bindings {
     Get.put(
       SingleArticleScreenController(),
     );
-
+    Get.put(
+      RegisterController(),
+    );
   }
 }
