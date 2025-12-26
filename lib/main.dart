@@ -7,7 +7,8 @@ import 'package:new_techblog/view/article_list_screen.dart';
 import 'package:new_techblog/view/article_screen.dart';
 import 'package:new_techblog/view/main_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:new_techblog/view/splash_screen.dart';
+import 'package:new_techblog/view/maycats_widget.dart';
+import 'package:get_storage/get_storage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +19,7 @@ void main() async {
         systemNavigationBarColor: SolidColors.systemNavigationBarColor,
         systemNavigationBarIconBrightness: Brightness.dark),
   );
-
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -36,7 +37,9 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: "/articleListView()",
-          page: () => ArticleListScreen(title: "مقالات جدید",),
+          page: () => ArticleListScreen(
+            title: "مقالات جدید",
+          ),
         ),
         GetPage(
           name: "/articleScreen",
@@ -46,6 +49,10 @@ class MyApp extends StatelessWidget {
           name: "/",
           page: () => MainScreen(),
         ),
+        GetPage(
+          name: "/myCatsWidget",
+          page: () => MyCatsWidget(),
+        )
       ],
       title: 'techBlog',
       localizationsDelegates: [
@@ -76,7 +83,6 @@ class MyApp extends StatelessWidget {
                 backgroundColor:
                     WidgetStatePropertyAll(SolidColors.primaryColor))),
         fontFamily: "dana",
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),

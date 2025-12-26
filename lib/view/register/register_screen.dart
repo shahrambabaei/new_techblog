@@ -170,11 +170,8 @@ class RegisterScreen extends GetView<RegisterController> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MyCatsWidget(),
-                          ));
+                      controller.verify();
+                      // Get.toNamed("/myCatsWidget");
                     },
                     child: Text(
                       "ادامه",
