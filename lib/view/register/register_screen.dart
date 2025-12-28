@@ -171,7 +171,7 @@ class RegisterScreen extends GetView<RegisterController> {
                 ElevatedButton(
                     onPressed: () {
                       controller.verify();
-                      // Get.toNamed("/myCatsWidget");
+                      Get.toNamed("/myCatsWidget");
                     },
                     child: Text(
                       "ادامه",

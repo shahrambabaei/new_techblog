@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:new_techblog/component/my_color.dart';
+import 'package:new_techblog/component/storage_constant.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -35,13 +37,17 @@ class BottomNavigation extends StatelessWidget {
                     color: Colors.white,
                   )),
               IconButton(
-                  onPressed: () => onChannge(1),
+                  onPressed: () {
+                    GetStorage().read(StorageConstant.token) == null
+                        ? onChannge(1)
+                        : onChannge(2);
+                  },
                   icon: ImageIcon(
                     Assets.icons.w.image().image,
                     color: Colors.white,
                   )),
               IconButton(
-                  onPressed: () => onChannge(2),
+                  onPressed: () => onChannge(3),
                   icon: ImageIcon(
                     Assets.icons.pen.image().image,
                     color: Colors.white,
@@ -53,4 +59,3 @@ class BottomNavigation extends StatelessWidget {
     );
   }
 }
-
