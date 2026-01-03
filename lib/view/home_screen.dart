@@ -10,6 +10,7 @@ import 'package:new_techblog/controller/home_screen_controller.dart';
 import 'package:new_techblog/controller/single_article_screen_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 import 'package:new_techblog/models/fake_data.dart';
+import 'package:new_techblog/routes/app_routes.dart';
 import 'package:new_techblog/view/article_list_screen.dart';
 
 class HomeScreen extends GetView<HomeScreenController> {
@@ -176,7 +177,8 @@ class HomeScreen extends GetView<HomeScreenController> {
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
       child: InkWell(
         onTap: () {
-          Get.toNamed("/articleListView");
+          Get.toNamed(AppRoutes.articleListScreen);
+          //"/articleListView"
         },
         child: Row(
           children: [

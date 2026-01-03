@@ -10,7 +10,7 @@ class SplashScreen extends GetView<SplashController> {
 
   @override
   Widget build(BuildContext context) {
-    // final controller = Get.find<SplashController>();
+    Get.find<SplashController>();
     return Scaffold(
       body: Center(
         child: Column(

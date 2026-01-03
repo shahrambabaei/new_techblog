@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:new_techblog/component/my_color.dart';
-import 'package:new_techblog/my_binding.dart';
+import 'package:new_techblog/app_bindings/my_binding.dart';
+import 'package:new_techblog/routes/app_pages.dart';
+import 'package:new_techblog/routes/app_routes.dart';
 import 'package:new_techblog/view/article_list_screen.dart';
 import 'package:new_techblog/view/article_screen.dart';
 import 'package:new_techblog/view/main_screen.dart';
@@ -30,30 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialBinding: MyBinding(),
-      getPages: [
-        GetPage(
-          name: "/mainScreen",
-          page: () => MainScreen(),
-        ),
-        GetPage(
-          name: "/articleListView()",
-          page: () => ArticleListScreen(
-            title: "مقالات جدید",
-          ),
-        ),
-        GetPage(
-          name: "/articleScreen",
-          page: () => ArticleScreen(),
-        ),
-        GetPage(
-          name: "/",
-          page: () => MainScreen(),
-        ),
-        GetPage(
-          name: "/myCatsWidget",
-          page: () => MyCatsWidget(),
-        )
-      ],
+      getPages: AppPage.appPage,
       title: 'techBlog',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -86,7 +65,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: "/",
+      initialRoute: AppRoutes.splashScreen,
     );
   }
 }

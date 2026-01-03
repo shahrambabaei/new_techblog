@@ -14,7 +14,6 @@ class MainScreen extends GetView<MainScreenController> {
   Widget build(BuildContext context) {
     final Uri url = Uri.parse('https://flutter.dev');
     return Scaffold(
-
       drawer: Drawer(
         backgroundColor: SolidColors.scaffoldBg,
         child: Padding(
@@ -32,8 +31,7 @@ class MainScreen extends GetView<MainScreenController> {
               ListTile(
                 title: Text(
                   'پروفایل کاربر',
-                  style: headlineSmall
-                      .copyWith(color: Colors.black),
+                  style: headlineSmall.copyWith(color: Colors.black),
                 ),
                 onTap: () {},
               ),
@@ -43,9 +41,7 @@ class MainScreen extends GetView<MainScreenController> {
               ListTile(
                 title: Text(
                   " درباره تک‌بلاگ",
-                  style: headlineMedium
-
-                      .copyWith(color: Colors.black),
+                  style: headlineMedium.copyWith(color: Colors.black),
                 ),
                 onTap: () {},
               ),
@@ -55,11 +51,9 @@ class MainScreen extends GetView<MainScreenController> {
               ListTile(
                 title: Text(
                   'اشتراک گذاری تک بلاگ',
-                  style: headlineSmall
-                      .copyWith(color: Colors.black),
+                  style: headlineSmall.copyWith(color: Colors.black),
                 ),
                 onTap: () {
-
                   // SharePlus.instance.share(
                   //     ShareParams(text: "techBlog", title: "shahram babaei"));
                 },
@@ -70,8 +64,7 @@ class MainScreen extends GetView<MainScreenController> {
               ListTile(
                 title: Text(
                   "تک‌بلاگ در گیت هاب",
-                  style: headlineSmall
-                      .copyWith(color: Colors.black),
+                  style: headlineSmall.copyWith(color: Colors.black),
                 ),
                 onTap: () async {
                   await launchUrl(url);
@@ -115,10 +108,12 @@ class MainScreen extends GetView<MainScreenController> {
               );
             },
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
+          Positioned(
+            bottom: 10,
+            left: 0,
+            right: 0,
             child: BottomNavigation(
-              onChannge: (value) {
+              onChange: (value) {
                 controller.selectedIndex.value = value;
               },
             ),

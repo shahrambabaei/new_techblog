@@ -14,10 +14,7 @@ class MainScreenController extends GetxController {
     ProfileScreen(),
   ];
    // GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  final Uri url = Uri.parse('https://flutter.dev');
+  // final Uri url = Uri.parse('https://flutter.dev');
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
+
 }

@@ -5,8 +5,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:new_techblog/component/api_constant.dart';
 import 'package:new_techblog/component/storage_constant.dart';
 import 'package:new_techblog/services/dio_service.dart';
-import 'package:new_techblog/view/post_screen.dart';
-import 'package:new_techblog/view/register/register_screen.dart';
 
 class RegisterController extends GetxController {
   TextEditingController emailEditingController = TextEditingController();
@@ -37,12 +35,11 @@ class RegisterController extends GetxController {
     var status = response["response"];
 
     switch (status) {
-      case "verified ":
+      case "verified":
         box.write(StorageConstant.userId, response["user_id"]);
         box.write(StorageConstant.token, response["token"]);
-
-        // print("read::" + box.read(StorageConstant.userId));
-        // print("read::" + box.read(StorageConstant.token));
+        //route
+        Get.offAllNamed("/myCatsWidget");
         break;
       case "incorrect_code":
         Get.snackbar("خطا", "کد فعالسازی غلط است");
