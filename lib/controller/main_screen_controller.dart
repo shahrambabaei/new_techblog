@@ -10,11 +10,8 @@ class MainScreenController extends GetxController {
   List<Widget> screenList = [
     HomeScreen(),
     RegisterScreen(),
-    PostScreen(),
     ProfileScreen(),
   ];
-   // GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  // final Uri url = Uri.parse('https://flutter.dev');
-
-
+// GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+// final Uri url = Uri.parse('https://flutter.dev');
 }

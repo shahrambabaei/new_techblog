@@ -69,12 +69,14 @@ class RegisterScreen extends GetView<RegisterController> {
           child: Container(
             height: MediaQuery.of(context).size.height / 2,
             decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25))),
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25),
+                topRight: Radius.circular(25),
+              ),
+            ),
             child: Form(
-              // key:,
+              key: controller.formKey.value,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -90,10 +92,12 @@ class RegisterScreen extends GetView<RegisterController> {
                       textAlign: TextAlign.center,
                       textDirection: TextDirection.ltr,
                       decoration: InputDecoration(
-                          hintText: "example@gmail.com",
-                          hintStyle: textTheme.headlineSmall,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12))),
+                        hintText: "example@gmail.com",
+                        hintStyle: textTheme.headlineSmall,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'لطفا این فیلد را پر کنید';
@@ -111,14 +115,17 @@ class RegisterScreen extends GetView<RegisterController> {
                     height: 50,
                   ),
                   ElevatedButton(
-                      onPressed: () {
+                    onPressed: () {
+                      if (controller.formKey.value.currentState!.validate()) {
                         controller.register();
                         Get.back();
                         _activateCodeBottomSheet(context, textTheme);
-                      },
-                      child: Text(
-                        "ادامه",
-                      ))
+                      }
+                    },
+                    child: Text(
+                      "ادامه",
+                    ),
+                  )
                 ],
               ),
             ),
@@ -141,10 +148,12 @@ class RegisterScreen extends GetView<RegisterController> {
           child: Container(
             height: MediaQuery.of(context).size.height / 2,
             decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25))),
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25),
+                topRight: Radius.circular(25),
+              ),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

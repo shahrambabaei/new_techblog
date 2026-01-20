@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -9,7 +9,7 @@ import 'package:new_techblog/services/dio_service.dart';
 class RegisterController extends GetxController {
   TextEditingController emailEditingController = TextEditingController();
   TextEditingController activeCodeEditingController = TextEditingController();
-
+  final formKey = GlobalKey<FormState>().obs;
   dynamic userid = "";
   dynamic email = "";
   final box = GetStorage();
