@@ -36,39 +36,96 @@ class BottomNavigation extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                GetStorage().read(StorageConstant.token) == null
-                    ? onChange(1)
-                    : Get.bottomSheet(Container(
-                        padding: EdgeInsets.all(20),
-                        height: 300,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(12),
-                            topRight: Radius.circular(12),
+                // GetStorage().read(StorageConstant.token) == null
+                //     ? onChange(1)
+                //     :
+                Get.bottomSheet(
+                  Container(
+                    padding: EdgeInsets.all(30),
+                    height: 300,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 50,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              SvgPicture.asset(
+                                Assets.images.techbot,
+                                height: 50,
+                                width: 50,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 5),
+                                child: Text(
+                                    "دونسته هات رو با بقیه به اشتراک بذار ..."),
+                              )
+                            ],
                           ),
                         ),
-                        child: Column(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  Assets.images.techbot,
-                                  height: 50,
-                                  width: 50,
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text("دونسته هات رو با بقیه به اشتراک بذار ...")
-                              ],
-                            ),
-                            Text(
-                                "فکر کن!! اینجا بودنت به این معناست که یک گیک تکنولوژی هستی دونسته هات رو با جامعه ی گیک های فارسی زبان به اشتراک بگذار"),
-                          ],
+                        SizedBox(
+                          height: 10,
                         ),
-                      ));
+                        Text(
+                            "فکر کن!! اینجا بودنت به این معناست که یک گیک تکنولوژی هستی دونسته هات رو با جامعه ی گیک های فارسی زبان به اشتراک بگذار"),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: InkWell(
+
+                          onTap:(){},
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        Assets.icons.articleIcon.path,
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text("مدیریت مقاله ها")
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: InkWell(
+                                  onTap: (){},
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        Assets.icons.podcastIcon.path,
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text("مدیریت پادکست ها")
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
               },
               icon: ImageIcon(
                 Assets.icons.w.image().image,

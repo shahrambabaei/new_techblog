@@ -8,15 +8,21 @@ class DioService {
 
   Future<dynamic> getData(String url) async {
     Response response;
-    response = await dio.get(
-      url,
-      options: Options(
-          headers: {"content-type": "application/json"},
-          method: "GET",
-          responseType: ResponseType.json),
-    );
+    try {
+      response = await dio.get(
+        url,
+        options: Options(
+            headers: {"content-type": "application/json"},
+            method: "GET",
+            responseType: ResponseType.json),
+      );
 
-    return response;
+      return response;
+    } on DioException catch (e) {
+      throw Exception("خطا در دریافت اطلاعات از سرور");
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<dynamic> postData(Map<String, dynamic> map, String url) async {
@@ -39,6 +45,8 @@ class DioService {
     } on DioException catch (e) {
       log('Error: ${e.message}');
 
+      rethrow;
+    } catch (e) {
       rethrow;
     }
   }
