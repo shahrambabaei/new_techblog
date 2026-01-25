@@ -14,32 +14,37 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: preferredSize,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(14, 8, 14, 0),
-          child: AppBar(
-            backgroundColor: Colors.transparent,
-            leading: InkWell(
-              onTap: () {
-                Get.back();
-              },
-              child: CircleAvatar(
-                radius: 50,
-                backgroundColor: SolidColors.primaryColor,
-                child: Icon(
-                  Icons.arrow_back_rounded,
-                  color: Colors.white,
+    return SafeArea(
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: preferredSize,
+      
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(14, 8, 14, 0),
+            child: AppBar(
+              backgroundColor: Colors.red,
+              leading: InkWell(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(
+                  width:0,
+                  height: 0,
+                  decoration: BoxDecoration(
+                      color: SolidColors.primaryColor, shape: BoxShape.circle),
+                  child: Icon(
+                    Icons.arrow_back_ios_new_outlined,
+                    color: Colors.white,
+                  ),
                 ),
               ),
+              actions: [
+                Text(
+                  title,
+                  style: appBarTextStyle,
+                )
+              ],
             ),
-            actions: [
-              Text(
-                title,
-                style: appBarTextStyle,
-              )
-            ],
           ),
         ),
       ),

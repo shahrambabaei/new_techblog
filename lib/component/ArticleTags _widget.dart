@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_techblog/component/my_color.dart';
-import 'package:new_techblog/controller/article_list_screen_controller.dart';
-import 'package:new_techblog/controller/single_article_screen_controller.dart';
-import 'package:new_techblog/view/article_list_screen.dart';
+import 'package:new_techblog/controller/article/single_article_screen_controller.dart';
+import '../controller/article/article_list_screen_controller.dart';
+import '../view/article/article_list_screen.dart';
+
 
 class ArticleTagsWidget extends StatelessWidget {
   const ArticleTagsWidget({super.key});

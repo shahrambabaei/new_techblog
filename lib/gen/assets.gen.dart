@@ -46,6 +46,9 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/articleEmpty.svg
+  String get articleEmpty => 'assets/images/articleEmpty.svg';
+
   /// File path: assets/images/banner.png
   AssetGenImage get banner => const AssetGenImage('assets/images/banner.png');
 
@@ -73,6 +76,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
+        articleEmpty,
         banner,
         downArrow,
         logosplash,

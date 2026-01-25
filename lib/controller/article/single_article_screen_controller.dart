@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:new_techblog/component/api_constant.dart';
 import 'package:new_techblog/models/single_article_model.dart';
 import 'package:new_techblog/services/dio_service.dart';
-import 'package:new_techblog/view/article_screen.dart';
+import 'package:new_techblog/view/article/article_screen.dart';
 
 class SingleArticleScreenController extends GetxController {
   Rx<SingleArticleModel> singleArticleModel = SingleArticleModel().obs;

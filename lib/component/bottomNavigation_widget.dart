@@ -5,6 +5,8 @@ import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/component/storage_constant.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 import 'package:get/get.dart';
+import 'package:new_techblog/routes/app_pages.dart';
+import 'package:new_techblog/routes/app_routes.dart';
 
 class BottomNavigation extends StatelessWidget {
   final Function(int index) onChange;
@@ -84,8 +86,9 @@ class BottomNavigation extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: InkWell(
-
-                          onTap:(){},
+                                  onTap: () {
+                                    Get.toNamed(AppRoutes.manageArticleScreen);
+                                  },
                                   child: Row(
                                     children: [
                                       Image.asset(
@@ -103,7 +106,7 @@ class BottomNavigation extends StatelessWidget {
                               ),
                               Expanded(
                                 child: InkWell(
-                                  onTap: (){},
+                                  onTap: () {},
                                   child: Row(
                                     children: [
                                       Image.asset(

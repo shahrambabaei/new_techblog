@@ -5,11 +5,7 @@ import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/app_bindings/my_binding.dart';
 import 'package:new_techblog/routes/app_pages.dart';
 import 'package:new_techblog/routes/app_routes.dart';
-import 'package:new_techblog/view/article_list_screen.dart';
-import 'package:new_techblog/view/article_screen.dart';
-import 'package:new_techblog/view/main_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:new_techblog/view/maycats_widget.dart';
 import 'package:get_storage/get_storage.dart';
 
 void main() async {

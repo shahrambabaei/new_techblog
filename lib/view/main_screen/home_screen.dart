@@ -5,13 +5,13 @@ import 'package:get/get.dart';
 import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/component/mystring.dart';
 import 'package:new_techblog/component/text_style.dart';
-import 'package:new_techblog/controller/article_list_screen_controller.dart';
 import 'package:new_techblog/controller/home_screen_controller.dart';
-import 'package:new_techblog/controller/single_article_screen_controller.dart';
+import 'package:new_techblog/controller/article/single_article_screen_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
-import 'package:new_techblog/models/fake_data.dart';
 import 'package:new_techblog/routes/app_routes.dart';
-import 'package:new_techblog/view/article_list_screen.dart';
+import '../../controller/article/article_list_screen_controller.dart';
+import '../article/article_list_screen.dart';
+
 
 class HomeScreen extends GetView<HomeScreenController> {
   const HomeScreen({

@@ -1,55 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:new_techblog/component/my_appbar.dart';
 import 'package:new_techblog/component/mystring.dart';
 import 'package:new_techblog/component/text_style.dart';
 import 'package:new_techblog/controller/register_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
-import 'package:new_techblog/component/maycats_widget.dart';
 
-class RegisterScreen extends GetView<RegisterController> {
-  const RegisterScreen({super.key});
+class ManageArticleScreen extends GetView<RegisterController> {
+  const ManageArticleScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
+      appBar: MyAppBar(title: "مدیریت مقاله ها"),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: [
+            SizedBox(
+              height: 100,
+            ),
             SvgPicture.asset(
-              Assets.images.techbot,
+              Assets.images.articleEmpty,
               height: 100,
             ),
             SizedBox(
               height: 20,
             ),
             Text(
-              MyString.welcome,
-              style: headlineMedium,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              MyString.welcomeescription,
+              MyString.articleEmpty,
               style: headlineMedium,
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: 100,
+              height: 200,
             ),
             ElevatedButton(
-              onPressed: () {
-                _showEmailBottomSheet(context, textTheme);
-              },
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  minimumSize: Size(150, 46)),
               child: Text(
-                "بزن بریم",
-                style: displayLarge,
+                "بریم برای نوشتن یک مقاله باحال",
+                style:
+                    displayMedium.copyWith(fontSize: 14, color: Colors.white),
               ),
-            )
+            ),
           ],
         ),
       ),
