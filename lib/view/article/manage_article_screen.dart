@@ -1,14 +1,24 @@
+import 'package:cached_network_image/cached_network_image.dart'
+    show CachedNetworkImage;
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart' show SpinKitFadingCircle;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart' show GetStorage;
 import 'package:new_techblog/component/my_appbar.dart';
 import 'package:new_techblog/component/mystring.dart';
 import 'package:new_techblog/component/text_style.dart';
+import 'package:new_techblog/controller/article/manage_article_controller.dart';
 import 'package:new_techblog/controller/register_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 
-class ManageArticleScreen extends GetView<RegisterController> {
-  const ManageArticleScreen({super.key});
+import '../../component/my_color.dart';
+
+class ManageArticleScreen extends StatelessWidget {
+  ManageArticleScreen({super.key});
+
+  final articleManageController = Get.find<ManageArticleController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -16,181 +26,166 @@ class ManageArticleScreen extends GetView<RegisterController> {
     TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: MyAppBar(title: "مدیریت مقاله ها"),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-
-          children: [
-            SizedBox(
-              height: 100,
-            ),
-            SvgPicture.asset(
-              Assets.images.articleEmpty,
-              height: 100,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              MyString.articleEmpty,
-              style: headlineMedium,
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 200,
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+      body: Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: Obx(() {
+          if (articleManageController.articleList.isNotEmpty) {
+            return SizedBox(
+              height: Get.height,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: articleManageController.articleList.length,
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 5),
+                    child: InkWell(
+                      onTap: () {
+                        // articleManageController.getData(
+                        //   int.parse(controller.articleList[index].id!),
+                        // );
+                      },
+                      child: SizedBox(
+                        height: 110,
+                        key: Key(
+                            articleManageController.articleList[index].id ??
+                                'default_$index'),
+                        child: Row(
+                          children: [
+                            Container(
+                              height: double.infinity,
+                              width: 110,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: CachedNetworkImage(
+                                imageUrl: articleManageController
+                                    .articleList[index].image!,
+                                placeholder: (context, url) =>
+                                    SpinKitFadingCircle(
+                                  size: 32,
+                                  color: SolidColors.primaryColor,
+                                ),
+                                errorWidget: (context, url, error) => Icon(
+                                  Icons.image_not_supported_outlined,
+                                  size: 32,
+                                ),
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover)),
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    articleManageController
+                                        .articleList[index].title!,
+                                    style:
+                                        appBarTextStyle.copyWith(fontSize: 14),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            articleManageController
+                                                    .articleList[index]
+                                                    .author ??
+                                                "",
+                                            style: subTitleStyle1,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 5, right: 10),
+                                            child: Text(
+                                              "بازدید",
+                                              style: subTitleStyle1,
+                                            ),
+                                          ),
+                                          Text(
+                                            articleManageController
+                                                .articleList[index].view!,
+                                            style: subTitleStyle1,
+                                          )
+                                        ],
+                                      ),
+                                      Text(
+                                        articleManageController
+                                            .articleList[index].catName!,
+                                        style: subTitleStyle,
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                  minimumSize: Size(150, 46)),
-              child: Text(
-                "بریم برای نوشتن یک مقاله باحال",
-                style:
-                    displayMedium.copyWith(fontSize: 14, color: Colors.white),
+                ),
               ),
-            ),
-          ],
-        ),
+            );
+          }
+          return emptyArticle();
+        }),
       ),
     );
   }
 
-  Future<dynamic> _showEmailBottomSheet(
-      BuildContext context, TextTheme textTheme) {
-    return showModalBottomSheet(
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (context) {
-        return Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Container(
-            height: MediaQuery.of(context).size.height / 2,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25),
-                topRight: Radius.circular(25),
-              ),
-            ),
-            child: Form(
-              key: controller.formKey.value,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    MyString.insertYourEmail,
-                    style: headlineMedium,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 50, vertical: 20),
-                    child: TextFormField(
-                      controller: controller.emailEditingController,
-                      textAlign: TextAlign.center,
-                      textDirection: TextDirection.ltr,
-                      decoration: InputDecoration(
-                        hintText: "example@gmail.com",
-                        hintStyle: textTheme.headlineSmall,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'لطفا این فیلد را پر کنید';
-                        }
-                        if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                            .hasMatch(value)) {
-                          return 'ایمیل معتبر وارد کنید';
-                        }
-                        return null;
-                      },
-                      onChanged: (value) {},
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (controller.formKey.value.currentState!.validate()) {
-                        controller.register();
-                        Get.back();
-                        _activateCodeBottomSheet(context, textTheme);
-                      }
-                    },
-                    child: Text(
-                      "ادامه",
-                    ),
-                  )
-                ],
-              ),
+  Widget emptyArticle() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 100,
+          ),
+          SvgPicture.asset(
+            Assets.images.articleEmpty,
+            height: 100,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            MyString.articleEmpty,
+            style: headlineMedium,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 200,
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                minimumSize: Size(150, 46)),
+            child: Text(
+              "بریم برای نوشتن یک مقاله باحال",
+              style: displayMedium.copyWith(fontSize: 14, color: Colors.white),
             ),
           ),
-        );
-      },
-    );
-  }
-
-  Future<dynamic> _activateCodeBottomSheet(
-      BuildContext context, TextTheme textTheme) {
-    return showModalBottomSheet(
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (context) {
-        return Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Container(
-            height: MediaQuery.of(context).size.height / 2,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25),
-                topRight: Radius.circular(25),
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  MyString.activateCode,
-                  style: headlineMedium,
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                  child: TextFormField(
-                    controller: controller.activeCodeEditingController,
-                    textAlign: TextAlign.center,
-                    textDirection: TextDirection.ltr,
-                    decoration: InputDecoration(
-                      hintText: "*****",
-                    ),
-                    onChanged: (value) {},
-                  ),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      controller.verify();
-                    },
-                    child: Text(
-                      "ادامه",
-                    ))
-              ],
-            ),
-          ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

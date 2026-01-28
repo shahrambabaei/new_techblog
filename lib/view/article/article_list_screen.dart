@@ -5,9 +5,7 @@ import 'package:new_techblog/component/my_appbar.dart';
 import 'package:get/get.dart';
 import 'package:new_techblog/component/my_color.dart';
 import 'package:new_techblog/component/text_style.dart';
-import 'package:new_techblog/controller/article_list_screen_controller.dart';
 import 'package:new_techblog/controller/article/single_article_screen_controller.dart';
-
 import '../../controller/article/article_list_screen_controller.dart';
 
 class ArticleListScreen extends GetView<ArticleListScreenController> {
