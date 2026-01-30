@@ -19,7 +19,6 @@ class ManageArticleScreen extends StatelessWidget {
 
   final articleManageController = Get.find<ManageArticleController>();
 
-
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
@@ -28,123 +27,158 @@ class ManageArticleScreen extends StatelessWidget {
       appBar: MyAppBar(title: "مدیریت مقاله ها"),
       body: Padding(
         padding: const EdgeInsets.all(14.0),
-        child: Obx(() {
-          if (articleManageController.articleList.isNotEmpty) {
-            return SizedBox(
-              height: Get.height,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: articleManageController.articleList.length,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 5),
-                    child: InkWell(
-                      onTap: () {
-                        // articleManageController.getData(
-                        //   int.parse(controller.articleList[index].id!),
-                        // );
-                      },
-                      child: SizedBox(
-                        height: 110,
-                        key: Key(
-                            articleManageController.articleList[index].id ??
-                                'default_$index'),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: double.infinity,
-                              width: 110,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: CachedNetworkImage(
-                                imageUrl: articleManageController
-                                    .articleList[index].image!,
-                                placeholder: (context, url) =>
-                                    SpinKitFadingCircle(
-                                  size: 32,
-                                  color: SolidColors.primaryColor,
-                                ),
-                                errorWidget: (context, url, error) => Icon(
-                                  Icons.image_not_supported_outlined,
-                                  size: 32,
-                                ),
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
+        child: Obx(
+          () {
+            if (articleManageController.isLaoding.value) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SpinKitFadingCircle(
+                      color: SolidColors.primaryColor,
+                      size: 32,
+                    ),
+                    SizedBox(height: 16),
+                    Text('در حال بارگذاری...'),
+                  ],
+                ),
+              );
+            } else {
+              if (articleManageController.articleList.isNotEmpty) {
+                return SizedBox(
+                  height: Get.height,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: articleManageController.articleList.length,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        child: InkWell(
+                          onTap: () {
+                            // articleManageController.getData(
+                            //   int.parse(controller.articleList[index].id!),
+                            // );
+                          },
+                          child: SizedBox(
+                            height: 110,
+                            key: Key(
+                                articleManageController.articleList[index].id ??
+                                    'default_$index'),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: double.infinity,
+                                  width: 110,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover)),
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: CachedNetworkImage(
+                                    imageUrl: articleManageController
+                                        .articleList[index].image!,
+                                    placeholder: (context, url) =>
+                                        SpinKitFadingCircle(
+                                      size: 32,
+                                      color: SolidColors.primaryColor,
+                                    ),
+                                    errorWidget: (context, url, error) => Icon(
+                                      Icons.image_not_supported_outlined,
+                                      size: 32,
+                                    ),
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                          image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover)),
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    articleManageController
-                                        .articleList[index].title!,
-                                    style:
-                                        appBarTextStyle.copyWith(fontSize: 14),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: Column(
                                     children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            articleManageController
-                                                    .articleList[index]
-                                                    .author ??
-                                                "",
-                                            style: subTitleStyle1,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5, right: 10),
-                                            child: Text(
-                                              "بازدید",
-                                              style: subTitleStyle1,
-                                            ),
-                                          ),
-                                          Text(
-                                            articleManageController
-                                                .articleList[index].view!,
-                                            style: subTitleStyle1,
-                                          )
-                                        ],
-                                      ),
                                       Text(
                                         articleManageController
-                                            .articleList[index].catName!,
-                                        style: subTitleStyle,
+                                            .articleList[index].title!,
+                                        style: appBarTextStyle.copyWith(
+                                            fontSize: 14),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                articleManageController
+                                                        .articleList[index]
+                                                        .author ??
+                                                    "",
+                                                style: subTitleStyle1,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 5, right: 10),
+                                                child: Text(
+                                                  "بازدید",
+                                                  style: subTitleStyle1,
+                                                ),
+                                              ),
+                                              Text(
+                                                articleManageController
+                                                    .articleList[index].view!,
+                                                style: subTitleStyle1,
+                                              )
+                                            ],
+                                          ),
+                                          Text(
+                                            articleManageController
+                                                .articleList[index].catName!,
+                                            style: subTitleStyle,
+                                          )
+                                        ],
                                       )
                                     ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ),
-            );
-          }
-          return emptyArticle();
-        }),
+                );
+              }
+              return emptyArticle();
+            }
+          },
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 32),
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            fixedSize: Size(Get.width, 56),
+          ),
+          child: Text(
+            "بریم برای نوشتن یک مقاله باحال",
+            style: displayMedium.copyWith(fontSize: 14, color: Colors.white),
+          ),
+        ),
       ),
     );
   }
@@ -171,18 +205,6 @@ class ManageArticleScreen extends StatelessWidget {
           ),
           SizedBox(
             height: 200,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                minimumSize: Size(150, 46)),
-            child: Text(
-              "بریم برای نوشتن یک مقاله باحال",
-              style: displayMedium.copyWith(fontSize: 14, color: Colors.white),
-            ),
           ),
         ],
       ),

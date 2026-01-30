@@ -180,6 +180,7 @@ class RegisterScreen extends GetView<RegisterController> {
                 ElevatedButton(
                     onPressed: () {
                       controller.verify();
+
                     },
                     child: Text(
                       "ادامه",
