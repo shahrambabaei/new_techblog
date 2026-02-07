@@ -54,16 +54,10 @@ class Info {
   String? createdAt;
 
   Info(
-      {this.id,
-      this.title,
-      this.content,
-      this.image,
-      this.catId,
-      this.catName,
-      this.author,
-      this.view,
-      this.status,
-      this.createdAt});
+    this.title,
+    this.content,
+    this.image,
+  );
 
   Info.fromJson(Map<String, dynamic> json) {
     id = json['id'];
