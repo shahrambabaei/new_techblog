@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:new_techblog/component/my_color.dart';
+import 'package:new_techblog/widgets/my_color.dart';
 import 'package:new_techblog/app_bindings/my_binding.dart';
 import 'package:new_techblog/routes/app_pages.dart';
 import 'package:new_techblog/routes/app_routes.dart';

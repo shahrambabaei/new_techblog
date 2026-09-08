@@ -5,4 +5,5 @@ class AppRoutes {
   static const String myCatsWidget = "/myCatsWidget";
   static const String splashScreen = "/splashScreen";
   static const String manageArticleScreen = "/manageArticleScreen";
+  static const String singleManageScreen = "/singleManageScreen";
 }
