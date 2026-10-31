@@ -12,8 +12,6 @@ import 'package:new_techblog/gen/assets.gen.dart';
 import 'package:new_techblog/routes/app_routes.dart';
 import '../article_list/article_list_screen_controller.dart';
 
-
-
 class HomeScreen extends GetView<HomeScreenController> {
   const HomeScreen({
     super.key,
@@ -21,7 +19,6 @@ class HomeScreen extends GetView<HomeScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Obx(
@@ -46,12 +43,22 @@ class HomeScreen extends GetView<HomeScreenController> {
           } else {
             return Column(
               children: [
+                 SizedBox(
+                  height: 16,
+                ),
+                
                 bannerWidget(),
                 SizedBox(
-                  height: 50,
+                  height: 16,
                 ),
                 tagListWidget(),
+                 SizedBox(
+                  height: 16,
+                ),
                 seeMoreWidget(),
+                 SizedBox(
+                  height: 12,
+                ),
                 blogListWidget(),
                 seeMorepodcastWidget(),
                 podcastWidget(),
@@ -154,7 +161,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                   ImageIcon(
                     Assets.icons.hashTagIcon.image().image,
                     color: Colors.white,
-                    size: 16,
+                    size: 12,
                   ),
                   SizedBox(
                     width: 8,
@@ -162,7 +169,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                   Text(
                     controller.tagList[index].title!,
                     style: headlineSmall.copyWith(
-                        color: Colors.white, fontSize: 16),
+                        color: Colors.white, fontSize: 12),
                   ),
                 ],
               ),
@@ -175,7 +182,7 @@ class HomeScreen extends GetView<HomeScreenController> {
 
   Widget seeMoreWidget() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
       child: InkWell(
         onTap: () {
           Get.toNamed(AppRoutes.articleListScreen);
@@ -311,7 +318,7 @@ class HomeScreen extends GetView<HomeScreenController> {
 
   Widget seeMorepodcastWidget() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         children: [
           ImageIcon(

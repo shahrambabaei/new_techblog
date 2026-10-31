@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'my_color.dart';
-import '../gen/assets.gen.dart';
 import '../data/models/fake_data.dart';
 
 class MainTagWidget extends StatelessWidget {

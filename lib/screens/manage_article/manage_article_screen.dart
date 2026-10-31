@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart' show SpinKitFadingCircle;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart' show GetStorage;
 import 'package:new_techblog/widgets/my_appbar.dart';
 import 'package:new_techblog/widgets/mystring.dart';
 import 'package:new_techblog/widgets/text_style.dart';
 import 'package:new_techblog/screens/manage_article/manage_article_controller.dart';
-import 'package:new_techblog/screens/register/register_controller.dart';
 import 'package:new_techblog/gen/assets.gen.dart';
 import 'package:new_techblog/routes/app_routes.dart';
 
@@ -22,9 +20,6 @@ class ManageArticleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final manageAricleController = Get.find<ManageArticleController>();
-    final _formKey = GlobalKey<FormState>();
-    TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: MyAppBar(title: "مدیریت مقاله ها"),
       body: Padding(

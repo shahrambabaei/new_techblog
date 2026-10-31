@@ -112,10 +112,13 @@ class MainScreen extends GetView<MainScreenController> {
             bottom: 10,
             left: 0,
             right: 0,
-            child: BottomNavigation(
-              onChange: (value) {
-                controller.selectedIndex.value = value;
-              },
+            child: SafeArea(
+              top: false,
+              child: BottomNavigation(
+                onChange: (value) {
+                  controller.selectedIndex.value = value;
+                },
+              ),
             ),
           ),
         ],

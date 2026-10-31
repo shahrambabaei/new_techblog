@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:new_techblog/widgets/my_color.dart';
 import 'package:new_techblog/widgets/text_style.dart';
 import 'package:new_techblog/screens/single_article/single_article_screen_controller.dart';
-import 'package:new_techblog/data/models/single_article_model.dart';
 
 class RelatedWidget extends StatelessWidget {
   const RelatedWidget({super.key});

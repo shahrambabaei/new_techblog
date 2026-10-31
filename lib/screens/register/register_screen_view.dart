@@ -12,7 +12,6 @@ class RegisterScreen extends GetView<RegisterController> {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
     TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: Center(
@@ -98,16 +97,16 @@ class RegisterScreen extends GetView<RegisterController> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'لطفا این فیلد را پر کنید';
-                      //   }
-                      //   if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                      //       .hasMatch(value)) {
-                      //     return 'ایمیل معتبر وارد کنید';
-                      //   }
-                      //   return null;
-                      // },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'لطفا این فیلد را پر کنید';
+                        }
+                        if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                            .hasMatch(value)) {
+                          return 'ایمیل معتبر وارد کنید';
+                        }
+                        return null;
+                      },
                       onChanged: (value) {},
                     ),
                   ),

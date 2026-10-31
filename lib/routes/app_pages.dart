@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:new_techblog/screens/main_screen/main_screen_binding.dart';
 import 'package:new_techblog/screens/manage_article/manage_article_binding.dart';
 import 'package:new_techblog/screens/single_article/single_article_binding.dart';
-import 'package:new_techblog/screens/single_manage/single_manage_screen-binding.dart';
 import 'package:new_techblog/screens/splash/splash_screen.dart';
 import 'package:new_techblog/screens/splash/splash_screen_binding.dart';
 import 'package:new_techblog/routes/app_routes.dart';
