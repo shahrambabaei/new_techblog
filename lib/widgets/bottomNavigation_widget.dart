@@ -20,7 +20,7 @@ class BottomNavigation extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
-        height: MediaQuery.of(context).size.height / 10,
+        height:Get.size.height / 12,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(colors: GradientColors.bottomNav),
@@ -31,7 +31,7 @@ class BottomNavigation extends StatelessWidget {
             IconButton(
               onPressed: () => onChange(0),
               icon: ImageIcon(
-                Assets.icons.user.image().image,
+                Assets.icons.home.image().image,
                 color: Colors.white,
               ),
             ),
@@ -137,7 +137,7 @@ class BottomNavigation extends StatelessWidget {
             IconButton(
               onPressed: () => onChange(2),
               icon: ImageIcon(
-                Assets.icons.pen.image().image,
+                Assets.icons.user.image().image,
                 color: Colors.white,
               ),
             ),

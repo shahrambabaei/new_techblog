@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:new_techblog/widgets/my_color.dart';
 
 class DividerWidget extends StatelessWidget {
-  final String text;
   final double size;
   const DividerWidget({
-    required this.text,
     required this.size,
     super.key,
   });
@@ -15,7 +13,7 @@ class DividerWidget extends StatelessWidget {
     return Column(
       children: [
         Divider(
-          thickness: 1.5,
+          thickness: 1,
           indent: size,
           endIndent: size,
           color: SolidColors.dividerColor,

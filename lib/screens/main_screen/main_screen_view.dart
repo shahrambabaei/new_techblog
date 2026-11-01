@@ -14,8 +14,9 @@ class MainScreen extends GetView<MainScreenController> {
   Widget build(BuildContext context) {
     final Uri url = Uri.parse('https://flutter.dev');
     return Scaffold(
+      backgroundColor: SolidColors.lightBackColor,
       drawer: Drawer(
-        backgroundColor: SolidColors.scaffoldBg,
+        backgroundColor: SolidColors.lightBackColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: ListView(
@@ -75,6 +76,7 @@ class MainScreen extends GetView<MainScreenController> {
         ),
       ),
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Center(
           child: Image.asset(
             Assets.images.logosplash.path,

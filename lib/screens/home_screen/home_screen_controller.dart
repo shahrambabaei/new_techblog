@@ -7,11 +7,11 @@ import 'package:new_techblog/data/models/tag_mode.dart';
 import 'package:new_techblog/data/services/dio_service.dart';
 
 class HomeScreenController extends GetxController {
-  Rx<BannerModel> bannerModel = BannerModel().obs;
-  RxList<ArticleInfoModel> articleList = RxList();
-  RxList<PodcastModel> podcastList = RxList();
-  RxList<TagModel> tagList = RxList();
-  RxBool isLoading = true.obs;
+  final Rx<BannerModel> bannerModel = BannerModel().obs;
+  final RxList<ArticleInfoModel> articleList = <ArticleInfoModel>[].obs;
+  final RxList<PodcastModel> podcastList = <PodcastModel>[].obs;
+  final RxList<TagModel> tagList = <TagModel>[].obs;
+  final RxBool isLoading = true.obs;
 
   @override
   void onInit() {
@@ -19,35 +19,47 @@ class HomeScreenController extends GetxController {
     super.onInit();
   }
 
-  getDate() async {
+  Future<void> getDate() async {
+    isLoading.value = true;
     try {
       var response = await DioService().getData(ApiConstant.getHomeItem);
-      if (response.statusCode == 200) {
-        isLoading.value = true;
-        response.data["top_podcasts"].map((e) {
-          podcastList.add(PodcastModel.fromJson(e));
-        }).toList();
+      if (response != null && response.statusCode == 200) {
+        final data = response.data;
 
-        //banner
-        bannerModel.value = BannerModel.fromJson(response.data["poster"]);
+        // Banner
+        if (data["poster"] != null) {
+          bannerModel.value = BannerModel.fromJson(data["poster"]);
+        }
 
-        response.data["tags"].map((e) {
-          tagList.add(TagModel.fromJson(e));
-        }).toList();
+        // Tags
+        if (data["tags"] != null) {
+          tagList.assignAll(
+            (data["tags"] as List).map((e) => TagModel.fromJson(e)).toList(),
+          );
+        }
 
-        //Article
-        response.data["top_visited"].map((e) {
-          articleList.add(ArticleInfoModel.fromJson(e));
-        }).toList();
+        // Articles (Top visited)
+        if (data["top_visited"] != null) {
+          articleList.assignAll(
+            (data["top_visited"] as List)
+                .map((e) => ArticleInfoModel.fromJson(e))
+                .toList(),
+          );
+        }
 
-        //podcast
-        response.data["top_podcasts"].map((e) {
-          podcastList.add(PodcastModel.fromJson(e));
-        }).toList();
-        isLoading.value = false;
+        // Podcasts
+        if (data["top_podcasts"] != null) {
+          podcastList.assignAll(
+            (data["top_podcasts"] as List)
+                .map((e) => PodcastModel.fromJson(e))
+                .toList(),
+          );
+        }
       }
     } catch (e) {
-      // print(e.toString());
+      Get.snackbar('خطا', 'خطا در برقراری ارتباط با سرور');
+    } finally {
+      isLoading.value = false;
     }
   }
 }

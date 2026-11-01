@@ -22,6 +22,9 @@ class $AssetsIconsGen {
   AssetGenImage get hashTagIcon =>
       const AssetGenImage('assets/icons/hashTagIcon.png');
 
+  /// File path: assets/icons/home.png
+  AssetGenImage get home => const AssetGenImage('assets/icons/home.png');
+
   /// File path: assets/icons/icon.png
   AssetGenImage get icon => const AssetGenImage('assets/icons/icon.png');
 
@@ -40,7 +43,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [articleIcon, hashTagIcon, icon, pen, podcastIcon, user, w];
+      [articleIcon, hashTagIcon, home, icon, pen, podcastIcon, user, w];
 }
 
 class $AssetsImagesGen {
@@ -87,9 +90,7 @@ class $AssetsImagesGen {
       ];
 }
 
-class Assets {
-  const Assets._();
-
+abstract final class Assets {
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }

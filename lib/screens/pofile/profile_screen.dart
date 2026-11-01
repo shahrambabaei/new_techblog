@@ -16,103 +16,96 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: Column(
-            children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage(Assets.images.profile.path),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ImageIcon(
-                    Assets.icons.pen.image().image,
-                    color: SolidColors.seeMore,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    MyString.imageProfileEdit,
-                    style: displaySmall,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 60,
-              ),
-              Text(
-                "شهرام بابایی",
-                style:headlineMedium
-,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "shahram.b6996@gmail.com",
-                style:headlineMedium
-,
-              ),
-              SizedBox(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 40,
+            ),
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage(Assets.images.profile.path),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ImageIcon(
+                  Assets.icons.pen.image().image,
+                  color: SolidColors.seeMore,
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  MyString.imageProfileEdit,
+                  style: displaySmall,
+                )
+              ],
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            Text(
+              "شهرام بابایی",
+              style: headlineMedium,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "shahram.b6996@gmail.com",
+              style: headlineMedium,
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            DividerWidget(
+              size: 40,
+            ),
+            InkWell(
+              onTap: () {},
+              child: SizedBox(
                 height: 50,
-              ),
-              DividerWidget(
-                text: MyString.myFavBlog,
-                size: 50,
-              ),
-              InkWell(
-                onTap: () {},
-                child: SizedBox(
-                  height: 40,
-                  child: Center(
-                    child: Text(
-                      MyString.myFavBlog,
-                      style: TextTheme.of(context).headlineMedium,
-                    ),
+                child: Center(
+                  child: Text(
+                    MyString.myFavBlog,
+                    style: headlineMedium1,
                   ),
                 ),
               ),
-              DividerWidget(
-                text: MyString.myFavPodcast,
-                size: 50,
+            ),
+            DividerWidget(
+              size: 40,
+            ),
+            InkWell(
+              onTap: () {},
+              child: SizedBox(
+                height: 40,
+                child: Center(
+                  child: Text(MyString.myFavPodcast, style: headlineMedium1),
+                ),
               ),
-              InkWell(
-                onTap: () {},
-                child: SizedBox(
-                  height: 40,
-                  child: Center(
-                    child: Text(
-                      MyString.myFavBlog,
-                      style: TextTheme.of(context).headlineMedium,
-                    ),
+            ),
+            DividerWidget(
+              size: 40,
+            ),
+            InkWell(
+              onTap: () {},
+              child: SizedBox(
+                height: 40,
+                child: Center(
+                  child: Text(
+                    MyString.logOut,
+                    style: headlineMedium1,
                   ),
                 ),
               ),
-              DividerWidget(
-                text: MyString.logOut,
-                size: 50,
-              ),
-              InkWell(
-                onTap: () {},
-                child: SizedBox(
-                  height: 40,
-                  child: Center(
-                    child: Text(
-                      MyString.myFavBlog,
-                      style: TextTheme.of(context).headlineMedium,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -61,3 +61,9 @@ TextStyle subTitleStyle1 = TextStyle(
     fontSize: 12,
     color: SolidColors.gray,
     fontWeight: FontWeight.w400);
+TextStyle headlineMedium1 = TextStyle(
+  fontFamily: 'dana',
+  fontSize: 18,
+  fontWeight: FontWeight.w500,
+  color: Color(0xff101010),
+);
