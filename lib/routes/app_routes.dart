@@ -6,4 +6,5 @@ class AppRoutes {
   static const String splashScreen = "/splashScreen";
   static const String manageArticleScreen = "/manageArticleScreen";
   static const String singleManageScreen = "/singleManageScreen";
+  static const String podcastListScreen = "/podcastListScreen";
 }

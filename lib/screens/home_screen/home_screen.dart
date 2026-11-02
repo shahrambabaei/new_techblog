@@ -58,7 +58,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                   const SizedBox(height: 16),
                   tagListWidget(),
                   const SizedBox(height: 20),
-                  seeMoreWidget(),
+                  seeMoreArticleWidget(),
                   const SizedBox(height: 12),
                   blogListWidget(),
                   const SizedBox(height: 20),
@@ -200,7 +200,7 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 
-  Widget seeMoreWidget() {
+  Widget seeMoreArticleWidget() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: SeeMoreWidget(
@@ -335,7 +335,7 @@ class HomeScreen extends GetView<HomeScreenController> {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: SeeMoreWidget(
         title: MyString.viewHotestPodCasts,
-        onTap: () {},
+        onTap: () => Get.toNamed(AppRoutes.podcastListScreen),
       ),
     );
   }

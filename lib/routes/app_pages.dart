@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:new_techblog/screens/main_screen/main_screen_binding.dart';
 import 'package:new_techblog/screens/manage_article/manage_article_binding.dart';
+import 'package:new_techblog/screens/podcast_list/podcast_list_screen.dart';
+import 'package:new_techblog/screens/podcast_list/podcast_list_screen_binding.dart';
 import 'package:new_techblog/screens/single_article/single_article_binding.dart';
 import 'package:new_techblog/screens/splash/splash_screen.dart';
 import 'package:new_techblog/screens/splash/splash_screen_binding.dart';
@@ -26,7 +28,7 @@ class AppPage {
     ),
     GetPage(
       name: AppRoutes.articleListScreen,
-      page: () => ArticleListScreen(title: "مقالات جدید"),
+      page: () => ArticleListScreen(title: "لیست مقاله ها"),
     ),
     GetPage(
         name: AppRoutes.articleScreen,
@@ -41,10 +43,9 @@ class AppPage {
       page: () => ManageArticleScreen(),
       binding: ManageArticleBinding(),
     ),
-    // GetPage(
-    //   name: AppRoutes.singleManageScreen,
-    //   page: () => SingleManageScreen(),
-    //   binding: ManageArticleBinding(),
-    // ),
+    GetPage(
+        name: AppRoutes.podcastListScreen,
+        page: () => PodcastListScreen(title: "لیست پادکست ها",),
+        binding: PodcastListScreenBinding()),
   ];
 }
